@@ -1,0 +1,3826 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Português - Apprendre le Portugais</title>
+<style>
+  :root {
+    --navy: #0d1b2a;
+    --navy2: #142230;
+    --navy3: #1c2f42;
+    --gold: #c9943a;
+    --gold-light: #e8b45a;
+    --terracotta: #c1583a;
+    --cream: #f5edd6;
+    --cream2: #e8d9ba;
+    --green: #4caf82;
+    --red: #e05252;
+    --text-light: #d4c9b0;
+    --text-muted: #8a9bb0;
+    --card-front: #1c2f42;
+    --card-back: #1a3a2a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+  body {
+    background-color: var(--navy);
+    color: var(--cream);
+    font-family: Georgia, 'Times New Roman', serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Azulejo tile background pattern */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(201,148,58,0.07) 39px, rgba(201,148,58,0.07) 40px),
+      repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(201,148,58,0.07) 39px, rgba(201,148,58,0.07) 40px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(201,148,58,0.12) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .app {
+    position: relative;
+    z-index: 1;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 0 0 80px 0;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    padding: 20px 20px 0;
+    text-align: center;
+  }
+
+  .app-title {
+    font-size: 1.5rem;
+    letter-spacing: 0.05em;
+    color: var(--gold);
+    font-style: italic;
+    text-shadow: 0 0 30px rgba(201,148,58,0.4);
+  }
+
+  .app-subtitle {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 2px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  /* KEYBOARD SHORTCUTS HINT */
+  .keyboard-hint {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 6px;
+    opacity: 0.6;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  /* NAV TABS */
+  .nav-tabs {
+    display: flex;
+    margin: 16px 16px 0;
+    background: rgba(255,255,255,0.04);
+    border-radius: 12px;
+    padding: 4px;
+    gap: 2px;
+  }
+
+  .nav-tab {
+    flex: 1;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 0.72rem;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 8px 4px;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .nav-tab.active {
+    background: var(--navy3);
+    color: var(--gold);
+    box-shadow: 0 1px 8px rgba(0,0,0,0.4);
+  }
+
+  /* SEARCH BAR */
+  .search-bar {
+    padding: 12px 20px 0;
+  }
+
+  .search-input {
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 10px 14px;
+    color: var(--cream);
+    font-size: 0.9rem;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .search-input::placeholder { color: var(--text-muted); opacity: 0.6; }
+  .search-input:focus { border-color: var(--gold); }
+
+  /* PROGRESS BAR */
+  .progress-section {
+    padding: 16px 20px 0;
+  }
+
+  .progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .progress-label {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+  }
+
+  .progress-count {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  .progress-bar-track {
+    height: 6px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    border-radius: 3px;
+    transition: width 0.5s ease;
+    box-shadow: 0 0 10px rgba(201,148,58,0.5);
+  }
+
+  /* CATEGORY FILTER */
+  .category-scroll {
+    display: flex;
+    gap: 8px;
+    padding: 12px 20px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .category-scroll::-webkit-scrollbar { display: none; }
+
+  .cat-btn {
+    flex-shrink: 0;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: var(--text-muted);
+    font-size: 0.68rem;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    letter-spacing: 0.06em;
+    padding: 6px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .cat-btn.active {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--navy);
+    font-weight: 700;
+    box-shadow: 0 2px 12px rgba(201,148,58,0.4);
+  }
+
+  /* CATEGORY NAVIGATION ARROWS */
+  .cat-nav-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 20px;
+  }
+
+  .cat-nav-btn {
+    flex-shrink: 0;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--gold);
+    font-size: 1rem;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cat-nav-btn:hover {
+    background: rgba(201,148,58,0.1);
+    border-color: var(--gold);
+  }
+
+  .cat-nav-btn:active {
+    transform: scale(0.95);
+  }
+
+  .cat-nav-btn:disabled {
+    opacity: 0.3;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  .cat-scroll-wrapper {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* QUICK RESET BUTTON */
+  .btn-reset-quick {
+    flex-shrink: 0;
+    background: rgba(224,82,82,0.1);
+    border: 1px solid rgba(224,82,82,0.3);
+    color: var(--red);
+    font-size: 0.68rem;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    letter-spacing: 0.06em;
+    padding: 6px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+  }
+
+  .btn-reset-quick:hover {
+    background: rgba(224,82,82,0.2);
+    border-color: var(--red);
+  }
+
+  .btn-reset-quick:active {
+    transform: scale(0.96);
+  }
+
+  /* CONTROLS */
+  .controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px 12px;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .card-counter {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .toggle-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: var(--text-muted);
+    font-size: 0.68rem;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    letter-spacing: 0.06em;
+    padding: 6px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .toggle-btn.active {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(201,148,58,0.1);
+  }
+
+  /* FLASHCARD */
+  .card-container {
+    padding: 0 20px;
+    perspective: 1200px;
+  }
+
+  .card-wrapper {
+    width: 100%;
+    min-height: 320px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.55s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+  }
+
+  .card-wrapper.flipped {
+    transform: rotateY(180deg);
+  }
+
+  /* Animation d'entrée de carte */
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .card-wrapper.slide-in {
+    animation: slideIn 0.3s ease-out;
+  }
+
+  .card-face {
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05);
+  }
+
+  .card-front {
+    background: linear-gradient(145deg, #1e3552 0%, #142230 100%);
+    border: 1px solid rgba(201,148,58,0.2);
+  }
+
+  .card-front::before {
+    content: '';
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    border: 1px solid rgba(201,148,58,0.1);
+    border-radius: 12px;
+    pointer-events: none;
+  }
+
+  .card-back {
+    background: linear-gradient(145deg, #1e3830 0%, #0f2018 100%);
+    border: 1px solid rgba(76,175,130,0.25);
+    transform: rotateY(180deg);
+  }
+
+  .card-back::before {
+    content: '';
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    border: 1px solid rgba(76,175,130,0.12);
+    border-radius: 12px;
+    pointer-events: none;
+  }
+
+  .card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 12px;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+  }
+
+  .card-category-label {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+    margin-bottom: 12px;
+    opacity: 0.7;
+  }
+
+  .card-word {
+    font-size: 2rem;
+    font-weight: normal;
+    line-height: 1.2;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+
+  .card-word-back {
+    font-size: 2rem;
+    color: #a8e6c5;
+    margin-bottom: 6px;
+  }
+
+  .card-pronunciation {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 0.85rem;
+    color: rgba(168,230,197,0.6);
+    font-style: italic;
+    margin-bottom: 8px;
+  }
+
+  .card-example {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 0.75rem;
+    color: rgba(168,230,197,0.5);
+    margin-top: 12px;
+    padding: 8px 12px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 8px;
+    border-left: 2px solid rgba(168,230,197,0.3);
+  }
+
+  .card-synonyms {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 0.7rem;
+    color: rgba(168,230,197,0.4);
+    margin-top: 8px;
+  }
+
+  .card-hint {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    margin-top: 16px;
+    opacity: 0.6;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  .card-known-badge {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    box-shadow: 0 2px 8px rgba(76,175,130,0.5);
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.8; }
+  }
+
+  /* ACTION BUTTONS */
+  .action-btns {
+    display: flex;
+    gap: 12px;
+    padding: 16px 20px 0;
+  }
+
+  .btn-know, .btn-dontknow {
+    flex: 1;
+    padding: 14px;
+    border: none;
+    border-radius: 14px;
+    font-size: 0.85rem;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .btn-know {
+    background: linear-gradient(135deg, #3d9e6e, #2d7a55);
+    color: white;
+    box-shadow: 0 4px 16px rgba(61,158,110,0.3);
+  }
+
+  .btn-know:active { transform: scale(0.96); }
+
+  .btn-dontknow {
+    background: linear-gradient(135deg, #c45050, #9e3535);
+    color: white;
+    box-shadow: 0 4px 16px rgba(196,80,80,0.3);
+  }
+
+  .btn-dontknow:active { transform: scale(0.96); }
+
+  .nav-row {
+    display: flex;
+    gap: 10px;
+    margin: 12px 20px 0;
+  }
+
+  .btn-prev {
+    flex: 0 0 auto;
+    padding: 14px 18px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn-prev:active { background: rgba(255,255,255,0.08); transform: scale(0.96); }
+  .btn-prev:disabled { opacity: 0.2; cursor: default; pointer-events: none; }
+
+  .btn-next {
+    flex: 1;
+    padding: 14px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(201,148,58,0.25);
+    color: var(--gold);
+    font-size: 0.85rem;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .btn-next:active {
+    background: rgba(201,148,58,0.1);
+    transform: scale(0.98);
+  }
+
+  /* STATS */
+  .stats-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    padding: 16px 20px 0;
+  }
+
+  .stat-box {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    padding: 12px;
+    text-align: center;
+  }
+
+  .stat-number {
+    font-size: 1.5rem;
+    color: var(--gold);
+    font-weight: normal;
+  }
+
+  .stat-label {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  /* VISUAL STATS */
+  .visual-stats {
+    padding: 16px 20px;
+  }
+
+  .visual-stat-item {
+    margin-bottom: 16px;
+  }
+
+  .visual-stat-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+  }
+
+  .visual-stat-label {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 0.75rem;
+    color: var(--text-light);
+  }
+
+  .visual-stat-value {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  .visual-stat-bar {
+    height: 24px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .visual-stat-bar-fill {
+    height: 100%;
+    border-radius: 12px;
+    transition: width 0.6s ease;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 8px;
+    font-size: 0.7rem;
+    font-weight: 700;
+  }
+
+  .visual-stat-bar-fill.green {
+    background: linear-gradient(90deg, #3d9e6e, #4caf82);
+    color: white;
+  }
+
+  .visual-stat-bar-fill.red {
+    background: linear-gradient(90deg, #c45050, #e05252);
+    color: white;
+  }
+
+  .visual-stat-bar-fill.gold {
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    color: var(--navy);
+  }
+
+  /* EMPTY STATE */
+  .empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-muted);
+  }
+
+  .empty-icon { font-size: 3rem; margin-bottom: 12px; }
+  .empty-text { font-size: 0.9rem; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+
+  /* ======== ADD WORDS SECTION ======== */
+  #section-add {
+    display: none;
+    padding: 16px 20px;
+  }
+
+  .add-title {
+    font-size: 1.1rem;
+    color: var(--gold);
+    margin-bottom: 4px;
+    font-style: italic;
+  }
+
+  .add-subtitle {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    margin-bottom: 20px;
+  }
+
+  .add-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(201,148,58,0.15);
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 24px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .form-label {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    opacity: 0.7;
+  }
+
+  .form-input {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 12px 14px;
+    color: var(--cream);
+    font-size: 1rem;
+    font-family: Georgia, serif;
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  .form-input::placeholder { color: var(--text-muted); font-style: italic; }
+  .form-input:focus { border-color: var(--gold); }
+
+  .btn-add {
+    background: linear-gradient(135deg, var(--gold), #b8832a);
+    border: none;
+    color: var(--navy);
+    font-size: 0.9rem;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    padding: 14px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 4px;
+  }
+
+  .btn-add:active { transform: scale(0.97); }
+
+  .custom-words-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .custom-word-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    padding: 12px 14px;
+  }
+
+  .custom-word-fr {
+    font-size: 0.95rem;
+    color: var(--cream);
+    flex: 1;
+  }
+
+  .custom-word-pt {
+    font-size: 0.95rem;
+    color: #a8e6c5;
+    flex: 1;
+  }
+
+  .custom-word-pron {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-style: italic;
+    flex: 1;
+  }
+
+  .btn-delete {
+    background: none;
+    border: none;
+    color: var(--terracotta);
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 4px;
+    flex-shrink: 0;
+  }
+
+  /* LIST OF KNOWN/UNKNOWN */
+  #section-review {
+    display: none;
+    padding: 16px 20px;
+  }
+
+  .review-title {
+    font-size: 1.1rem;
+    color: var(--gold);
+    margin-bottom: 4px;
+    font-style: italic;
+  }
+
+  .review-subtitle {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+
+  .review-filter {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .review-filter-btn {
+    flex: 1;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: var(--text-muted);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .review-filter-btn.active-green {
+    background: rgba(76,175,130,0.15);
+    border-color: var(--green);
+    color: var(--green);
+  }
+
+  .review-filter-btn.active-red {
+    background: rgba(224,82,82,0.15);
+    border-color: var(--red);
+    color: var(--red);
+  }
+
+  .btn-reset {
+    width: 100%;
+    background: none;
+    border: 1px solid rgba(224,82,82,0.3);
+    color: var(--red);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 16px;
+    transition: all 0.2s;
+  }
+
+  .review-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .review-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.025);
+  }
+
+  .review-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .review-dot.known { background: var(--green); }
+  .review-dot.unknown { background: var(--red); }
+
+  .review-fr {
+    font-size: 0.85rem;
+    color: var(--cream);
+    flex: 1;
+  }
+
+  .review-pt {
+    font-size: 0.85rem;
+    color: #a8e6c5;
+    flex: 1;
+    text-align: right;
+  }
+
+  /* TOAST */
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: var(--navy3);
+    border: 1px solid rgba(201,148,58,0.3);
+    color: var(--cream);
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 0.82rem;
+    z-index: 100;
+    transition: transform 0.3s ease;
+    white-space: nowrap;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+  }
+
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* DIVIDER */
+  .divider {
+    margin: 0 20px;
+    height: 1px;
+    background: rgba(255,255,255,0.05);
+  }
+
+  /* Sections */
+  #section-cards { display: block; }
+
+  /* QUIZ MODE SPECIFIC */
+  .quiz-mode-indicator {
+    text-align: center;
+    padding: 8px 20px;
+    background: rgba(201,148,58,0.1);
+    border-top: 1px solid rgba(201,148,58,0.2);
+    border-bottom: 1px solid rgba(201,148,58,0.2);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 0.7rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .card-word-hidden {
+    filter: blur(15px);
+    user-select: none;
+    pointer-events: none;
+  }
+
+  /* WRITING MODE SPECIFIC */
+  .writing-mode-indicator {
+    text-align: center;
+    padding: 8px 20px;
+    background: rgba(76,175,130,0.1);
+    border-top: 1px solid rgba(76,175,130,0.2);
+    border-bottom: 1px solid rgba(76,175,130,0.2);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 0.7rem;
+    color: var(--green);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .writing-input-wrapper {
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: rgba(255,255,255,0.02);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .writing-input {
+    width: 100%;
+    padding: 12px 16px;
+    background: rgba(255,255,255,0.05);
+    border: 2px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    color: var(--cream);
+    font-size: 1rem;
+    font-family: Georgia, 'Times New Roman', serif;
+    transition: all 0.3s;
+  }
+
+  .writing-input:focus {
+    outline: none;
+    border-color: var(--green);
+    background: rgba(76,175,130,0.08);
+  }
+
+  .writing-input::placeholder {
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  .writing-check-btn {
+    align-self: flex-end;
+    background: linear-gradient(135deg, var(--green), #3a9869);
+    border: none;
+    color: white;
+    font-size: 0.85rem;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.05em;
+  }
+
+  .writing-check-btn:active {
+    transform: scale(0.95);
+  }
+
+  .writing-feedback {
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 0.85rem;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+  }
+
+  .writing-feedback.correct {
+    background: rgba(76,175,130,0.15);
+    color: var(--green);
+    border: 1px solid rgba(76,175,130,0.3);
+  }
+
+  .writing-feedback.incorrect {
+    background: rgba(224,82,82,0.15);
+    color: var(--red);
+    border: 1px solid rgba(224,82,82,0.3);
+  }
+
+  /* QCM MODE SPECIFIC */
+  .qcm-mode-indicator {
+    text-align: center;
+    padding: 8px 20px;
+    background: rgba(147,112,219,0.1);
+    border-top: 1px solid rgba(147,112,219,0.2);
+    border-bottom: 1px solid rgba(147,112,219,0.2);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 0.7rem;
+    color: #b8a0e6;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .qcm-options-wrapper {
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: rgba(255,255,255,0.02);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .qcm-option {
+    width: 100%;
+    padding: 14px 18px;
+    background: rgba(255,255,255,0.05);
+    border: 2px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    color: var(--cream);
+    font-size: 0.95rem;
+    font-family: Georgia, 'Times New Roman', serif;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: left;
+  }
+
+  .qcm-option:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(201,148,58,0.4);
+  }
+
+  .qcm-option:active {
+    transform: scale(0.98);
+  }
+
+  .qcm-option.correct {
+    background: rgba(76,175,130,0.15);
+    border-color: var(--green);
+    color: var(--green);
+  }
+
+  .qcm-option.incorrect {
+    background: rgba(224,82,82,0.15);
+    border-color: var(--red);
+    color: var(--red);
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="app-title">Português</div>
+    <div class="app-subtitle">Portugais européen · Apprendre ensemble</div>
+    <div class="keyboard-hint">⌨️ Espace: retourner | ←→: naviguer | K/D: je sais/pas | Alt+←→: catégories</div>
+  </header>
+
+  <nav class="nav-tabs">
+    <button class="nav-tab active" onclick="showSection('cards')">📖 Cartes</button>
+    <button class="nav-tab" onclick="showSection('review')">📊 Progrès</button>
+    <button class="nav-tab" onclick="showSection('add')">✏️ Ajouter</button>
+  </nav>
+
+  <!-- ===== SECTION CARTES ===== -->
+  <div id="section-cards">
+    <!-- Search Bar -->
+    <div class="search-bar">
+      <input type="text" class="search-input" id="search-input" placeholder="🔍 Rechercher un mot..." />
+    </div>
+
+    <div class="progress-section">
+      <div class="progress-header">
+        <span class="progress-label">Mots maîtrisés</span>
+        <span class="progress-count" id="progress-text">0 / 0</span>
+      </div>
+      <div class="progress-bar-track">
+        <div class="progress-bar-fill" id="progress-fill" style="width:0%"></div>
+      </div>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-box">
+        <div class="stat-number" id="stat-known">0</div>
+        <div class="stat-label">Connus</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number" id="stat-unknown">0</div>
+        <div class="stat-label">À revoir</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number" id="stat-total">0</div>
+        <div class="stat-label">Total</div>
+      </div>
+    </div>
+
+    <div class="cat-nav-wrapper">
+      <button class="cat-nav-btn" id="cat-prev-btn" onclick="previousCategory()" title="Catégorie précédente">←</button>
+      <div class="cat-scroll-wrapper">
+        <div style="position:absolute; left:0; top:0; bottom:0; width:32px; background:linear-gradient(to right, var(--navy), transparent); z-index:2; pointer-events:none; border-radius:0;"></div>
+        <div style="position:absolute; right:0; top:0; bottom:0; width:32px; background:linear-gradient(to left, var(--navy), transparent); z-index:2; pointer-events:none;"></div>
+        <div class="category-scroll" id="cat-scroll"></div>
+      </div>
+      <button class="cat-nav-btn" id="cat-next-btn" onclick="nextCategory()" title="Catégorie suivante">→</button>
+    </div>
+
+    <div class="controls">
+      <span class="card-counter" id="card-counter">Carte 1 / 1</span>
+      <button class="toggle-btn" id="shuffle-btn" onclick="toggleShuffle()">🔀 Aléatoire</button>
+      <button class="toggle-btn" id="quiz-btn" onclick="toggleQuizMode()">🎯 Quiz</button>
+      <button class="toggle-btn" id="writing-btn" onclick="toggleWritingMode()">✍️ Écriture</button>
+      <button class="toggle-btn" id="qcm-btn" onclick="toggleQCMMode()">📝 QCM</button>
+      <button class="toggle-btn" id="spaced-btn" onclick="toggleSpacedRepetition()">🔁 Répét.</button>
+      <button class="btn-reset-quick" onclick="quickResetScores()">🔄 Reset</button>
+    </div>
+
+    <div id="quiz-indicator" style="display:none;" class="quiz-mode-indicator">
+      Mode Quiz : Essaie de deviner avant de retourner !
+    </div>
+
+    <div id="writing-indicator" style="display:none;" class="writing-mode-indicator">
+      Mode Écriture : Tape la traduction portugaise !
+    </div>
+
+    <div id="writing-input-container" style="display:none;" class="writing-input-wrapper">
+      <input type="text" id="writing-input" class="writing-input" placeholder="Tape ta réponse en portugais..." />
+      <button class="writing-check-btn" onclick="checkWritingAnswer()">✓ Vérifier</button>
+      <div id="writing-feedback" class="writing-feedback"></div>
+    </div>
+
+    <div id="qcm-indicator" style="display:none;" class="qcm-mode-indicator">
+      Mode QCM : Choisis la bonne traduction !
+    </div>
+
+    <div id="qcm-options-container" style="display:none;" class="qcm-options-wrapper">
+      <button class="qcm-option" onclick="checkQCMAnswer(0)" id="qcm-opt-0"></button>
+      <button class="qcm-option" onclick="checkQCMAnswer(1)" id="qcm-opt-1"></button>
+      <button class="qcm-option" onclick="checkQCMAnswer(2)" id="qcm-opt-2"></button>
+      <button class="qcm-option" onclick="checkQCMAnswer(3)" id="qcm-opt-3"></button>
+    </div>
+
+    <div class="card-container">
+      <div class="card-wrapper" id="card" onclick="flipCard()">
+        <div class="card-face card-front" id="card-front">
+          <div class="card-icon" id="cf-icon"></div>
+          <div class="card-category-label" id="cf-category"></div>
+          <div class="card-word" id="cf-word">Chargement...</div>
+          <div class="card-hint">Toucher pour retourner</div>
+          <div class="card-known-badge" id="known-badge" style="display:none">✓</div>
+        </div>
+        <div class="card-face card-back" id="card-back">
+          <div class="card-icon" id="cb-icon"></div>
+          <div class="card-category-label" id="cb-category"></div>
+          <div class="card-word-back" id="cb-word"></div>
+          <div class="card-pronunciation" id="cb-pron"></div>
+          <div class="card-synonyms" id="cb-syn"></div>
+          <div class="card-example" id="cb-example"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="action-btns">
+      <button class="btn-dontknow" onclick="markCard(false)">✗ Je ne sais pas</button>
+      <button class="btn-know" onclick="markCard(true)">✓ Je sais !</button>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn-prev" id="btn-prev" onclick="prevCard()" disabled title="Carte précédente">←</button>
+      <button class="btn-next" onclick="nextCard()">Suivant →</button>
+    </div>
+  </div>
+
+  <!-- ===== SECTION PROGRÈS ===== -->
+  <div id="section-review">
+    <div class="review-title">Mes progrès</div>
+    <div class="review-subtitle">Statistiques détaillées de ton apprentissage</div>
+    
+    <!-- Visual Stats -->
+    <div class="visual-stats">
+      <div class="visual-stat-item">
+        <div class="visual-stat-header">
+          <span class="visual-stat-label">Mots connus</span>
+          <span class="visual-stat-value" id="vs-known-pct">0%</span>
+        </div>
+        <div class="visual-stat-bar">
+          <div class="visual-stat-bar-fill green" id="vs-known-bar" style="width:0%">
+            <span id="vs-known-num">0</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="visual-stat-item">
+        <div class="visual-stat-header">
+          <span class="visual-stat-label">À revoir</span>
+          <span class="visual-stat-value" id="vs-unknown-pct">0%</span>
+        </div>
+        <div class="visual-stat-bar">
+          <div class="visual-stat-bar-fill red" id="vs-unknown-bar" style="width:0%">
+            <span id="vs-unknown-num">0</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="visual-stat-item">
+        <div class="visual-stat-header">
+          <span class="visual-stat-label">Taux de réussite</span>
+          <span class="visual-stat-value" id="vs-success-pct">0%</span>
+        </div>
+        <div class="visual-stat-bar">
+          <div class="visual-stat-bar-fill gold" id="vs-success-bar" style="width:0%"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div style="padding: 16px 0 0;">
+      <div class="review-filter">
+        <button class="review-filter-btn active-green" id="rf-known" onclick="setReviewFilter('known')">✓ Connus</button>
+        <button class="review-filter-btn" id="rf-unknown" onclick="setReviewFilter('unknown')">✗ À revoir</button>
+        <button class="review-filter-btn" id="rf-all" onclick="setReviewFilter('all')">Tous</button>
+      </div>
+      <button class="btn-reset" onclick="resetProgress()">🔄 Remettre à zéro tous les scores</button>
+      <div class="review-list" id="review-list"></div>
+    </div>
+  </div>
+
+  <!-- ===== SECTION AJOUTER ===== -->
+  <div id="section-add">
+    <div class="add-title">Mots de Cristina</div>
+    <div class="add-subtitle">Ajoute les mots que ta collègue t'apprend</div>
+    <div class="add-form">
+      <div class="form-group">
+        <label class="form-label">En français</label>
+        <input class="form-input" id="inp-fr" type="text" placeholder="ex: attention au sol mouillé">
+      </div>
+      <div class="form-group">
+        <label class="form-label">En portugais</label>
+        <input class="form-input" id="inp-pt" type="text" placeholder="ex: cuidado com o chão molhado">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Prononciation (en français)</label>
+        <input class="form-input" id="inp-pron" type="text" placeholder="ex: kwi-da-dou kom ou chawn mou-lya-dou">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Exemple de phrase (optionnel)</label>
+        <input class="form-input" id="inp-example" type="text" placeholder="ex: Cuidado com o chão molhado!">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Icône/Emoji (optionnel)</label>
+        <input class="form-input" id="inp-icon" type="text" placeholder="ex: ⚠️" maxlength="2">
+      </div>
+      <button class="btn-add" onclick="addCustomWord()">+ Ajouter ce mot</button>
+    </div>
+    <div class="custom-words-list" id="custom-list"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ============================================================
+// DATA — Vocabulaire enrichi avec exemples, synonymes, images
+// ============================================================
+const VOCAB = [
+  // ---- AU TRAVAIL ----
+  {id:'w1', cat:'Travail', fr:'Dépêche-toi', pt:'Despacha-te', pron:'dèch-pach-teu', 
+   example:'Despacha-te! Vamos chegar atrasados!', exampleFr:'Dépêche-toi ! On va arriver en retard !', 
+   syn:'Anda rápido, Apressa-te', img:'⏰'},
+  {id:'w2', cat:'Travail', fr:'On y va', pt:'Vamos', pron:'va-mouch',
+   example:'Vamos, já é tarde.', exampleFr:'On y va, il est déjà tard.',
+   syn:'Vamo-nos embora, Vamos lá', img:'🚶'},
+  {id:'w3', cat:'Travail', fr:'T\'as compris ?', pt:'Percebeste?', pron:'per-ceu-bèch-teu',
+   example:'Percebeste o que eu disse?', exampleFr:'Tu as compris ce que j\'ai dit ?',
+   syn:'Entendeste?, Compreendeste?', img:'💡'},
+  {id:'w4', cat:'Travail', fr:'Attends', pt:'Espera', pron:'èch-pé-ra',
+   example:'Espera um momento, por favor.', exampleFr:'Attends un moment, s\'il te plaît.',
+   syn:'Aguarda, Espera aí', img:'⏸️'},
+  {id:'w5', cat:'Travail', fr:'Encore combien de temps ?', pt:'Quanto tempo ainda?', pron:'kwan-tou têm-pou aïn-da',
+   example:'Quanto tempo ainda falta?', exampleFr:'Encore combien de temps il reste ?',
+   img:'⏳'},
+  {id:'w6', cat:'Travail', fr:'C\'est bon', pt:'Está bem', pron:'èch-ta bèm',
+   example:'Está bem, vamos fazer assim.', exampleFr:'C\'est bon, on va faire comme ça.',
+   syn:'Está bom, Tudo bem, Pronto', img:'✓'},
+  {id:'w7', cat:'Travail', fr:'On a fini', pt:'Acabámos', pron:'a-ka-ba-mouch',
+   example:'Acabámos o trabalho!', exampleFr:'On a fini le travail !',
+   syn:'Terminámos, Finalizámos', img:'✅'},
+  {id:'w8', cat:'Travail', fr:'Vite', pt:'Depressa', pron:'deu-près-sa',
+   example:'Faz isso depressa!', exampleFr:'Fais ça vite !',
+   syn:'Rápido, Rapidamente', img:'⚡'},
+  {id:'w9', cat:'Travail', fr:'Doucement', pt:'Devagar', pron:'deu-va-gar',
+   example:'Vai devagar, não te apresses.', exampleFr:'Vas-y doucement, ne te presse pas.',
+   syn:'Com calma, Lentamente', img:'🐌'},
+  {id:'w10', cat:'Travail', fr:'Fais attention', pt:'Tem cuidado', pron:'têm kwi-da-dou',
+   example:'Tem cuidado com isso!', exampleFr:'Fais attention avec ça !',
+   syn:'Cuidado, Atenção', img:'⚠️'},
+  {id:'w11', cat:'Travail', fr:'Reste là', pt:'Fica aí', pron:'fi-ka a-i',
+   example:'Fica aí, já volto.', exampleFr:'Reste là, je reviens.',
+   syn:'Fica aqui, Espera aí', img:'📍'},
+  {id:'w12', cat:'Travail', fr:'Viens', pt:'Vem', pron:'vèm',
+   example:'Vem cá ajudar-me!', exampleFr:'Viens m\'aider !',
+   syn:'Vem cá, Anda cá', img:'👋'},
+  {id:'w13', cat:'Travail', fr:'Regarde', pt:'Olha', pron:'ô-lya',
+   example:'Olha para aqui!', exampleFr:'Regarde par ici !',
+   syn:'Vê, Observa', img:'👀'},
+  {id:'w14', cat:'Travail', fr:'Aide-moi', pt:'Ajuda-me', pron:'a-jou-da-meu',
+   example:'Ajuda-me a carregar isto.', exampleFr:'Aide-moi à porter ça.',
+   syn:'Dá-me uma mão', img:'🤝'},
+  {id:'w15', cat:'Travail', fr:'C\'est propre', pt:'Está limpo', pron:'èch-ta lim-pou',
+   example:'Está limpo, bom trabalho!', exampleFr:'C\'est propre, bon travail !',
+   syn:'Está asseado, Está bem', img:'✨'},
+  {id:'w16', cat:'Travail', fr:'C\'est sale', pt:'Está sujo', pron:'èch-ta sou-jou',
+   example:'Está sujo, precisa limpar.', exampleFr:'C\'est sale, il faut nettoyer.',
+   syn:'Está porco, Está imundo', img:'🧹'},
+  {id:'w17', cat:'Travail', fr:'Le seau', pt:'O balde', pron:'ou bal-deu',
+   example:'Enche o balde com água.', exampleFr:'Remplis le seau avec de l\'eau.',
+   syn:'O balde de limpeza', img:'🪣'},
+  {id:'w18', cat:'Travail', fr:'La serpillière', pt:'O esfregão', pron:'ou èch-freu-gawn',
+   example:'Passa o esfregão no chão.', exampleFr:'Passe la serpillière sur le sol.',
+   syn:'A esfregona', img:'🧽'},
+  {id:'w19', cat:'Travail', fr:'Les toilettes', pt:'As casas de banho', pron:'ach ka-zach deu ban-you',
+   example:'As casas de banho estão limpas.', exampleFr:'Les toilettes sont propres.',
+   syn:'Os WCs, As sanitas', img:'🚽'},
+  {id:'w20', cat:'Travail', fr:'Le couloir', pt:'O corredor', pron:'ou kou-rreu-dor',
+   example:'Limpa o corredor, por favor.', exampleFr:'Nettoie le couloir, s\'il te plaît.',
+   syn:'O passeio, O hall', img:'🏢'},
+  {id:'w21', cat:'Travail', fr:'Le bureau', pt:'O escritório', pron:'ou èch-kri-tô-riou',
+   example:'O escritório precisa de ser limpo.', exampleFr:'Le bureau a besoin d\'être nettoyé.',
+   syn:'O gabinete', img:'🏢'},
+  {id:'w22', cat:'Travail', fr:'L\'aspirateur', pt:'O aspirador', pron:'ou ach-pi-ra-dor',
+   example:'Passa o aspirador na sala.', exampleFr:'Passe l\'aspirateur dans la salle.',
+   img:'🧹'},
+  {id:'w23', cat:'Travail', fr:'Le produit (nettoyant)', pt:'O produto', pron:'ou prou-dou-tou',
+   example:'Usa este produto de limpeza.', exampleFr:'Utilise ce produit de nettoyage.',
+   syn:'O detergente', img:'🧴'},
+  {id:'w24', cat:'Travail', fr:'Le chiffon', pt:'O pano', pron:'ou pa-nou',
+   example:'Usa um pano limpo.', exampleFr:'Utilise un chiffon propre.',
+   syn:'O trapo', img:'🧻'},
+  {id:'w25', cat:'Travail', fr:'La poubelle', pt:'O caixote do lixo', pron:'ou kaï-chô-teu dou li-chou',
+   example:'Esvazia o caixote do lixo.', exampleFr:'Vide la poubelle.',
+   syn:'O lixo, O contentor', img:'🗑️'},
+  {id:'w26', cat:'Travail', fr:'Nettoyer', pt:'Limpar', pron:'lim-par',
+   example:'Vou limpar a cozinha.', exampleFr:'Je vais nettoyer la cuisine.',
+   syn:'Fazer a limpeza, Asseiar', img:'🧼'},
+  {id:'w27', cat:'Travail', fr:'Essuyer', pt:'Secar', pron:'seu-kar',
+   example:'Seca a mesa, por favor.', exampleFr:'Essuie la table, s\'il te plaît.',
+   syn:'Enxugar, Limpar', img:'💧'},
+  {id:'w28', cat:'Travail', fr:'Frotter', pt:'Esfregar', pron:'èch-freu-gar',
+   example:'Esfrega bem o chão.', exampleFr:'Frotte bien le sol.',
+   syn:'Raspar, Friccionar', img:'💪'},
+  {id:'w29', cat:'Travail', fr:'Rincer', pt:'Passar água', pron:'pa-sar a-gwa',
+   example:'Passa água para enxaguar.', exampleFr:'Rince avec de l\'eau.',
+   syn:'Enxaguar, Lavar', img:'💦'},
+  {id:'w30', cat:'Travail', fr:'Remplir', pt:'Encher', pron:'èn-chèr',
+   example:'Enche o balde de água.', exampleFr:'Remplis le seau d\'eau.',
+   syn:'Atestar, Completar', img:'⬆️'},
+  {id:'w31', cat:'Travail', fr:'Vider', pt:'Esvaziar', pron:'èch-va-zia-r',
+   example:'Esvazia o balde sujo.', exampleFr:'Vide le seau sale.',
+   syn:'Despejar, Tirar tudo', img:'⬇️'},
+  {id:'w32', cat:'Travail', fr:'Commencer', pt:'Começar', pron:'kou-meu-sar',
+   example:'Vamos começar a trabalhar.', exampleFr:'On va commencer à travailler.',
+   syn:'Iniciar, Principiar', img:'▶️'},
+  {id:'w33', cat:'Travail', fr:'Finir', pt:'Acabar', pron:'a-ka-bar',
+   example:'Quando vais acabar isso?', exampleFr:'Quand vas-tu finir ça ?',
+   syn:'Terminar, Finalizar', img:'🏁'},
+  {id:'w34', cat:'Travail', fr:'Se dépêcher', pt:'Despachar-se', pron:'dèch-pa-char-seu',
+   example:'Despacha-te, é urgente!', exampleFr:'Dépêche-toi, c\'est urgent !',
+   syn:'Apressar-se, Andar rápido', img:'⏰'},
+  {id:'w35', cat:'Travail', fr:'Attendre', pt:'Esperar', pron:'èch-peu-rar',
+   example:'Espera por mim aqui.', exampleFr:'Attends-moi ici.',
+   syn:'Aguardar', img:'⏳'},
+  {id:'w36', cat:'Travail', fr:'Partir', pt:'Ir embora', pron:'ir êm-bô-ra',
+   example:'Vou embora às 17h.', exampleFr:'Je pars à 17h.',
+   syn:'Sair, Ir-me embora', img:'🚪'},
+  {id:'w37', cat:'Travail', fr:'Arriver', pt:'Chegar', pron:'cheu-gar',
+   example:'A que horas chegas?', exampleFr:'À quelle heure tu arrives ?',
+   syn:'Aparecer', img:'📍'},
+  {id:'w38', cat:'Travail', fr:'Monter', pt:'Subir', pron:'sou-bir',
+   example:'Sobe as escadas.', exampleFr:'Monte les escaliers.',
+   syn:'Ir para cima', img:'⬆️'},
+  {id:'w39', cat:'Travail', fr:'Descendre', pt:'Descer', pron:'dèch-sèr',
+   example:'Desce com cuidado.', exampleFr:'Descends avec attention.',
+   syn:'Ir para baixo', img:'⬇️'},
+  {id:'w40', cat:'Travail', fr:'Ouvrir', pt:'Abrir', pron:'a-brir',
+   example:'Abre a janela, por favor.', exampleFr:'Ouvre la fenêtre, s\'il te plaît.',
+   syn:'Destrancar', img:'🔓'},
+  {id:'w41', cat:'Travail', fr:'Fermer', pt:'Fechar', pron:'feu-char',
+   example:'Fecha a porta, por favor.', exampleFr:'Ferme la porte, s\'il te plaît.',
+   syn:'Trancar, Encerrar', img:'🔒'},
+  {id:'w42', cat:'Travail', fr:'Allumer (lumière)', pt:'Ligar (a luz)', pron:'li-gar a louch',
+   example:'Liga a luz, está escuro.', exampleFr:'Allume la lumière, il fait sombre.',
+   syn:'Acender', img:'💡'},
+  {id:'w43', cat:'Travail', fr:'Éteindre', pt:'Desligar', pron:'dèch-li-gar',
+   example:'Desliga a luz quando saíres.', exampleFr:'Éteins la lumière quand tu sortiras.',
+   syn:'Apagar', img:'🌑'},
+  {id:'w44', cat:'Travail', fr:'La salle de réunion', pt:'A sala de reunião', pron:'a sa-la deu rrèu-niawn',
+   example:'A reunião é na sala 3.', exampleFr:'La réunion est dans la salle 3.',
+   syn:'A sala de conferências', img:'👥'},
+  {id:'w45', cat:'Travail', fr:'L\'entrée', pt:'A entrada', pron:'a ên-tra-da',
+   example:'Limpa a entrada primeiro.', exampleFr:'Nettoie l\'entrée d\'abord.',
+   syn:'O hall, A receção', img:'🚪'},
+  {id:'w46', cat:'Travail', fr:'Les escaliers', pt:'As escadas', pron:'ach èch-ka-dach',
+   example:'As escadas estão escorregadias.', exampleFr:'Les escaliers sont glissants.',
+   syn:'Os degraus', img:'🪜'},
+  {id:'w47', cat:'Travail', fr:'Le sol', pt:'O chão', pron:'ou chawn',
+   example:'O chão está molhado.', exampleFr:'Le sol est mouillé.',
+   syn:'O pavimento', img:'🟫'},
+  {id:'w48', cat:'Travail', fr:'La fenêtre', pt:'A janela', pron:'a ja-né-la',
+   example:'Limpa as janelas, por favor.', exampleFr:'Nettoie les fenêtres, s\'il te plaît.',
+   syn:'O vidro', img:'🪟'},
+  {id:'w49', cat:'Travail', fr:'La porte', pt:'A porta', pron:'a por-ta',
+   example:'A porta está aberta.', exampleFr:'La porte est ouverte.',
+   syn:'O portão', img:'🚪'},
+  {id:'w50', cat:'Travail', fr:'Le lavabo', pt:'O lavatório', pron:'ou la-va-tô-riou',
+   example:'Limpa o lavatório.', exampleFr:'Nettoie le lavabo.',
+   syn:'O lava-mãos, A pia', img:'🚰'},
+
+  // ---- ÉMOTIONS ----
+  {id:'e1', cat:'Émotions', fr:'C\'est nul', pt:'Não presta', pron:'nawn prèch-ta',
+   example:'Este filme não presta.', exampleFr:'Ce film est nul.',
+   syn:'É mau, É fraco', img:'👎'},
+  {id:'e2', cat:'Émotions', fr:'C\'est bien', pt:'É bom', pron:'é bom',
+   example:'É bom, gostei!', exampleFr:'C\'est bien, j\'ai aimé !',
+   syn:'Está bom, É fixe', img:'👍'},
+  {id:'e3', cat:'Émotions', fr:'C\'est chiant', pt:'Que seca!', pron:'keu sé-ka',
+   example:'Que seca este trabalho!', exampleFr:'C\'est chiant ce travail !',
+   syn:'Que chatice, Que aborrecimento', img:'😩'},
+  {id:'e4', cat:'Émotions', fr:'Il m\'énerve', pt:'Irrita-me', pron:'i-rri-ta-meu',
+   example:'Ele irrita-me tanto!', exampleFr:'Il m\'énerve tellement !',
+   syn:'Chateia-me, Aborrece-me', img:'😤'},
+  {id:'e5', cat:'Émotions', fr:'Je suis fatigué(e)', pt:'Estou cansado/a', pron:'èch-tô kan-sa-dou',
+   example:'Estou tão cansada hoje.', exampleFr:'Je suis si fatiguée aujourd\'hui.',
+   syn:'Estou exausto/a', img:'😴'},
+  {id:'e6', cat:'Émotions', fr:'C\'est drôle', pt:'É engraçado', pron:'é èn-gra-sa-dou',
+   example:'É muito engraçado!', exampleFr:'C\'est très drôle !',
+   syn:'É divertido, É cómico', img:'😄'},
+  {id:'e7', cat:'Émotions', fr:'T\'inquiète', pt:'Não te preocupes', pron:'nawn teu prèu-kou-pèch',
+   example:'Não te preocupes, vai correr bem.', exampleFr:'T\'inquiète, ça va bien se passer.',
+   syn:'Fica tranquilo/a', img:'😌'},
+  {id:'e8', cat:'Émotions', fr:'Ça va', pt:'Está bem', pron:'èch-ta bèm',
+   example:'Está bem, não te preocupes.', exampleFr:'Ça va, t\'inquiète pas.',
+   syn:'Tudo bem, Está bom', img:'👌'},
+  {id:'e9', cat:'Émotions', fr:'Super !', pt:'Óptimo!', pron:'ô-ti-mou',
+   example:'Óptimo, adoro!', exampleFr:'Super, j\'adore !',
+   syn:'Ótimo, Excelente', img:'🤩'},
+  {id:'e10', cat:'Émotions', fr:'Pas mal', pt:'Não está mau', pron:'nawn èch-ta mau',
+   example:'Não está mau, gostei.', exampleFr:'Pas mal, j\'ai aimé.',
+   syn:'Está razoável, Está aceitável', img:'😊'},
+  {id:'e11', cat:'Émotions', fr:'C\'est bizarre', pt:'É estranho', pron:'é èch-tran-you',
+   example:'É estranho ele não vir.', exampleFr:'C\'est bizarre qu\'il ne vienne pas.',
+   syn:'É esquisito, É raro', img:'🤨'},
+  {id:'e12', cat:'Émotions', fr:'C\'est incroyable', pt:'É incrível', pron:'é in-kri-vel',
+   example:'É incrível, não acredito!', exampleFr:'C\'est incroyable, j\'y crois pas !',
+   syn:'É espantoso, É fantástico', img:'😲'},
+  {id:'e13', cat:'Émotions', fr:'J\'en reviens pas', pt:'Não acredito', pron:'nawn a-kreu-di-tou',
+   example:'Não acredito no que vejo!', exampleFr:'Je n\'en reviens pas de ce que je vois !',
+   syn:'Não é possível', img:'😮'},
+  {id:'e14', cat:'Émotions', fr:'C\'est dommage', pt:'Que pena', pron:'keu pé-na',
+   example:'Que pena, não podes vir.', exampleFr:'C\'est dommage, tu peux pas venir.',
+   syn:'É uma pena, É penoso', img:'😔'},
+  {id:'e15', cat:'Émotions', fr:'Tant pis', pt:'Paciência', pron:'pa-siên-sia',
+   example:'Paciência, será para outra vez.', exampleFr:'Tant pis, ce sera pour une autre fois.',
+   syn:'Fazer o quê', img:'🤷'},
+  {id:'e16', cat:'Émotions', fr:'Tant mieux', pt:'Ainda bem', pron:'aïn-da bèm',
+   example:'Ainda bem que vieste!', exampleFr:'Tant mieux que tu sois venu !',
+   syn:'Que bom', img:'😊'},
+  {id:'e17', cat:'Émotions', fr:'J\'ai peur', pt:'Tenho medo', pron:'tèn-you mé-dou',
+   example:'Tenho medo do escuro.', exampleFr:'J\'ai peur du noir.',
+   syn:'Estou com medo', img:'😨'},
+  {id:'e18', cat:'Émotions', fr:'Je suis content(e)', pt:'Estou contente', pron:'èch-tô kon-tênt',
+   example:'Estou contente por ti!', exampleFr:'Je suis content pour toi !',
+   syn:'Estou feliz, Estou alegre', img:'😊'},
+  {id:'e19', cat:'Émotions', fr:'Je suis triste', pt:'Estou triste', pron:'èch-tô triçt',
+   example:'Estou triste hoje.', exampleFr:'Je suis triste aujourd\'hui.',
+   syn:'Estou melancólico/a', img:'😢'},
+  {id:'e20', cat:'Émotions', fr:'Je suis en colère', pt:'Estou furioso/a', pron:'èch-tô fou-riô-zou',
+   example:'Estou furiosa contigo!', exampleFr:'Je suis en colère contre toi !',
+   syn:'Estou zangado/a, Estou irritado/a', img:'😡'},
+  {id:'e21', cat:'Émotions', fr:'Je suis stressé(e)', pt:'Estou stressado/a', pron:'èch-tô strè-sa-dou',
+   example:'Estou stressado com o trabalho.', exampleFr:'Je suis stressé avec le travail.',
+   syn:'Estou nervoso/a', img:'😰'},
+  {id:'e22', cat:'Émotions', fr:'Je suis soulagé(e)', pt:'Estou aliviado/a', pron:'èch-tô a-li-via-dou',
+   example:'Estou aliviada, acabou!', exampleFr:'Je suis soulagée, c\'est fini !',
+   syn:'Sinto alívio', img:'😌'},
+  {id:'e23', cat:'Émotions', fr:'Je suis surpris(e)', pt:'Estou surpreendido/a', pron:'èch-tô sour-prèn-di-dou',
+   example:'Estou surpreendido com isto!', exampleFr:'Je suis surpris par ça !',
+   syn:'Estou espantado/a', img:'😲'},
+  {id:'e24', cat:'Émotions', fr:'J\'ai honte', pt:'Tenho vergonha', pron:'tèn-you ver-gon-ya',
+   example:'Tenho vergonha do que fiz.', exampleFr:'J\'ai honte de ce que j\'ai fait.',
+   syn:'Sinto vergonha', img:'😳'},
+  {id:'e25', cat:'Émotions', fr:'J\'ai confiance', pt:'Tenho confiança', pron:'tèn-you kon-fi-an-sa',
+   example:'Tenho confiança em ti.', exampleFr:'J\'ai confiance en toi.',
+   syn:'Confio', img:'🤝'},
+  {id:'e26', cat:'Émotions', fr:'Je me sens bien', pt:'Sinto-me bem', pron:'sin-tou-meu bèm',
+   example:'Sinto-me bem hoje.', exampleFr:'Je me sens bien aujourd\'hui.',
+   syn:'Estou bem', img:'😌'},
+  {id:'e27', cat:'Émotions', fr:'Je me sens mal', pt:'Sinto-me mal', pron:'sin-tou-meu mal',
+   example:'Sinto-me mal com isto.', exampleFr:'Je me sens mal avec ça.',
+   syn:'Não me sinto bem', img:'😞'},
+  {id:'e28', cat:'Émotions', fr:'Je suis perdu(e)', pt:'Estou perdido/a', pron:'èch-tô per-di-dou',
+   example:'Estou perdido, não sei onde estou.', exampleFr:'Je suis perdu, je sais pas où je suis.',
+   syn:'Estou desorientado/a', img:'🤷'},
+  {id:'e29', cat:'Émotions', fr:'Je comprends pas', pt:'Não percebo', pron:'nawn per-sé-bou',
+   example:'Não percebo nada.', exampleFr:'Je comprends rien.',
+   syn:'Não compreendo, Não entendo', img:'😕'},
+  {id:'e30', cat:'Émotions', fr:'J\'adore', pt:'Adoro', pron:'a-dô-rou',
+   example:'Adoro chocolate!', exampleFr:'J\'adore le chocolat !',
+   syn:'Amo', img:'😍'},
+  {id:'e31', cat:'Émotions', fr:'Je déteste', pt:'Detesto', pron:'deu-têch-tou',
+   example:'Detesto acordar cedo.', exampleFr:'Je déteste me lever tôt.',
+   syn:'Odeio', img:'😠'},
+  {id:'e32', cat:'Émotions', fr:'J\'aime bien', pt:'Gosto', pron:'gôch-tou',
+   example:'Gosto muito de ti.', exampleFr:'Je t\'aime bien.',
+   syn:'Aprecio', img:'☺️'},
+  {id:'e33', cat:'Émotions', fr:'Ça m\'énerve', pt:'Irrita-me', pron:'i-rri-ta-meu',
+   example:'Isso irrita-me imenso!', exampleFr:'Ça m\'énerve énormément !',
+   syn:'Chateia-me, Aborrece-me', img:'😤'},
+  {id:'e34', cat:'Émotions', fr:'Ça me fait rire', pt:'Faz-me rir', pron:'fach-meu rir',
+   example:'Isso faz-me rir tanto!', exampleFr:'Ça me fait tellement rire !',
+   syn:'Causa-me graça', img:'😂'},
+  {id:'e35', cat:'Émotions', fr:'Ça me fait peur', pt:'Mete-me medo', pron:'mèt-meu mé-dou',
+   example:'Isso mete-me medo.', exampleFr:'Ça me fait peur.',
+   syn:'Assusta-me, Amedronta-me', img:'😨'},
+  {id:'e36', cat:'Émotions', fr:'Je suis jaloux/jalouse', pt:'Estou com ciúmes', pron:'èch-tô kom siou-mèch',
+   example:'Estou com ciúmes de ti.', exampleFr:'Je suis jaloux de toi.',
+   syn:'Tenho ciúmes', img:'😒'},
+  {id:'e37', cat:'Émotions', fr:'Je suis fier/fière', pt:'Estou orgulhoso/a', pron:'èch-tô or-gou-lyô-zou',
+   example:'Estou orgulhosa de ti!', exampleFr:'Je suis fière de toi !',
+   syn:'Sinto orgulho', img:'😊'},
+
+  // ---- QUOTIDIEN ----
+  {id:'q1', cat:'Quotidien', fr:'Bonjour', pt:'Bom dia', pron:'bom di-a',
+   example:'Bom dia! Como estás?', exampleFr:'Bonjour ! Comment vas-tu ?',
+   syn:'Olá', img:'🌅'},
+  {id:'q2', cat:'Quotidien', fr:'Bonsoir', pt:'Boa tarde / Boa noite', pron:'bô-a tard / bô-a noït',
+   example:'Boa tarde a todos!', exampleFr:'Bonsoir à tous !',
+   img:'🌆'},
+  {id:'q3', cat:'Quotidien', fr:'Bonne nuit', pt:'Boa noite', pron:'bô-a noït',
+   example:'Boa noite, dorme bem.', exampleFr:'Bonne nuit, dors bien.',
+   syn:'Bons sonhos', img:'🌙'},
+  {id:'q4', cat:'Quotidien', fr:'Comment ça va ?', pt:'Como estás?', pron:'kô-mou èch-tach',
+   example:'Como estás hoje?', exampleFr:'Comment vas-tu aujourd\'hui ?',
+   syn:'Tudo bem?, Como vais?', img:'👋'},
+  {id:'q5', cat:'Quotidien', fr:'Ça va bien', pt:'Estou bem', pron:'èch-tô bèm',
+   example:'Estou bem, obrigado!', exampleFr:'Ça va bien, merci !',
+   syn:'Tudo bem, Está tudo bem', img:'😊'},
+  {id:'q6', cat:'Quotidien', fr:'Ça va pas', pt:'Não estou bem', pron:'nawn èch-tô bèm',
+   example:'Não estou bem hoje.', exampleFr:'Ça va pas aujourd\'hui.',
+   syn:'Estou mal', img:'😔'},
+  {id:'q7', cat:'Quotidien', fr:'Bonne journée', pt:'Boa jornada', pron:'bô-a jour-na-da',
+   example:'Boa jornada de trabalho!', exampleFr:'Bonne journée de travail !',
+   syn:'Bom dia, Tenha um bom dia', img:'☀️'},
+  {id:'q8', cat:'Quotidien', fr:'À demain', pt:'Até amanhã', pron:'a-té a-man-yan',
+   example:'Até amanhã! Descansa.', exampleFr:'À demain ! Repose-toi.',
+   syn:'Até logo', img:'👋'},
+  {id:'q9', cat:'Quotidien', fr:'À lundi', pt:'Até segunda', pron:'a-té seu-goun-da',
+   example:'Até segunda-feira!', exampleFr:'À lundi !',
+   syn:'Até à próxima semana', img:'📅'},
+  {id:'q10', cat:'Quotidien', fr:'Bon weekend', pt:'Bom fim de semana', pron:'bom fim deu seu-man-a',
+   example:'Bom fim de semana descansa!', exampleFr:'Bon weekend, repose-toi !',
+   img:'🎉'},
+  {id:'q11', cat:'Quotidien', fr:'T\'as bien dormi ?', pt:'Dormiste bem?', pron:'dor-mich-teu bèm',
+   example:'Dormiste bem esta noite?', exampleFr:'T\'as bien dormi cette nuit ?',
+   img:'😴'},
+  {id:'q12', cat:'Quotidien', fr:'T\'as mangé ?', pt:'Já comeste?', pron:'ja kou-mèch-teu',
+   example:'Já comeste o pequeno-almoço?', exampleFr:'T\'as mangé le petit-déjeuner ?',
+   syn:'Já almoçaste?', img:'🍽️'},
+  {id:'q13', cat:'Quotidien', fr:'Tu veux un café ?', pt:'Queres um café?', pron:'ké-rèch oum ka-fé',
+   example:'Queres um café comigo?', exampleFr:'Tu veux un café avec moi ?',
+   img:'☕'},
+  {id:'q14', cat:'Quotidien', fr:'T\'as faim ?', pt:'Tens fome?', pron:'tênch fô-meu',
+   example:'Tens fome? Vamos comer?', exampleFr:'T\'as faim ? On va manger ?',
+   syn:'Estás com fome?', img:'🍕'},
+  {id:'q15', cat:'Quotidien', fr:'T\'as soif ?', pt:'Tens sede?', pron:'tênch séd',
+   example:'Tens sede? Bebe água.', exampleFr:'T\'as soif ? Bois de l\'eau.',
+   syn:'Estás com sede?', img:'💧'},
+  {id:'q16', cat:'Quotidien', fr:'T\'as chaud ?', pt:'Tens calor?', pron:'tênch ka-lor',
+   example:'Tens calor? Abre a janela.', exampleFr:'T\'as chaud ? Ouvre la fenêtre.',
+   syn:'Estás com calor?', img:'🥵'},
+  {id:'q17', cat:'Quotidien', fr:'T\'as froid ?', pt:'Tens frio?', pron:'tênch fri-ou',
+   example:'Tens frio? Veste um casaco.', exampleFr:'T\'as froid ? Mets une veste.',
+   syn:'Estás com frio?', img:'🥶'},
+  {id:'q18', cat:'Quotidien', fr:'Tu veux quoi ?', pt:'O que queres?', pron:'ou keu ké-rèch',
+   example:'O que queres então?', exampleFr:'Tu veux quoi alors ?',
+   syn:'Que desejas?', img:'❓'},
+  {id:'q19', cat:'Quotidien', fr:'C\'est pour toi', pt:'É para ti', pron:'é pa-ra ti',
+   example:'Isto é para ti!', exampleFr:'C\'est pour toi !',
+   img:'🎁'},
+  {id:'q20', cat:'Quotidien', fr:'Merci', pt:'Obrigado/a', pron:'o-bri-ga-dou',
+   example:'Obrigada pela ajuda!', exampleFr:'Merci pour l\'aide !',
+   img:'🙏'},
+  {id:'q21', cat:'Quotidien', fr:'De rien', pt:'De nada', pron:'deu na-da',
+   example:'De nada, foi um prazer.', exampleFr:'De rien, c\'était un plaisir.',
+   syn:'Não tem de quê', img:'☺️'},
+  {id:'q22', cat:'Quotidien', fr:'S\'il te plaît', pt:'Se faz favor', pron:'seu fach fa-vor',
+   example:'Ajuda-me, se faz favor.', exampleFr:'Aide-moi, s\'il te plaît.',
+   syn:'Por favor', img:'🙏'},
+  {id:'q23', cat:'Quotidien', fr:'Excuse-moi', pt:'Desculpa', pron:'dèch-koul-pa',
+   example:'Desculpa, não foi minha intenção.', exampleFr:'Excuse-moi, c\'était pas intentionnel.',
+   syn:'Peço desculpa, Perdão', img:'🙏'},
+  {id:'q24', cat:'Quotidien', fr:'Pardon (demander passage)', pt:'Com licença', pron:'kom li-sèn-sa',
+   example:'Com licença, posso passar?', exampleFr:'Pardon, je peux passer ?',
+   syn:'Desculpe', img:'🚶'},
+  {id:'q25', cat:'Quotidien', fr:'Je sais pas', pt:'Não sei', pron:'nawn séi',
+   example:'Não sei, desculpa.', exampleFr:'Je sais pas, désolé.',
+   syn:'Não faço ideia', img:'🤷'},
+  {id:'q26', cat:'Quotidien', fr:'Je sais', pt:'Sei', pron:'séi',
+   example:'Sei, já me disseste.', exampleFr:'Je sais, tu me l\'as déjà dit.',
+   syn:'Eu sei', img:'💡'},
+  {id:'q27', cat:'Quotidien', fr:'T\'inquiète pas', pt:'Não te preocupes', pron:'nawn teu prèu-kou-pèch',
+   example:'Não te preocupes, vai dar tudo certo.', exampleFr:'T\'inquiète pas, tout va bien se passer.',
+   syn:'Fica tranquilo', img:'😌'},
+  {id:'q28', cat:'Quotidien', fr:'C\'est pas grave', pt:'Não faz mal', pron:'nawn fach mal',
+   example:'Não faz mal, não te preocupes.', exampleFr:'C\'est pas grave, t\'inquiète pas.',
+   syn:'Não tem problema', img:'👌'},
+  {id:'q29', cat:'Quotidien', fr:'C\'est important', pt:'É importante', pron:'é im-por-tan-teu',
+   example:'É importante fazermos isto.', exampleFr:'C\'est important qu\'on fasse ça.',
+   syn:'É essencial', img:'⚠️'},
+  {id:'q30', cat:'Quotidien', fr:'Fais gaffe', pt:'Tem cuidado', pron:'têm kwi-da-dou',
+   example:'Tem cuidado com isso!', exampleFr:'Fais gaffe avec ça !',
+   syn:'Cuidado, Atenção', img:'⚠️'},
+  {id:'q31', cat:'Quotidien', fr:'Attention !', pt:'Atenção!', pron:'a-tèn-sawn',
+   example:'Atenção! Está perigoso!', exampleFr:'Attention ! C\'est dangereux !',
+   syn:'Cuidado', img:'⚠️'},
+  {id:'q32', cat:'Quotidien', fr:'Écoute', pt:'Ouve', pron:'ôv',
+   example:'Ouve o que te vou dizer.', exampleFr:'Écoute ce que je vais te dire.',
+   syn:'Escuta', img:'👂'},
+  {id:'q33', cat:'Quotidien', fr:'Dis-moi', pt:'Diz-me', pron:'dich-meu',
+   example:'Diz-me a verdade.', exampleFr:'Dis-moi la vérité.',
+   syn:'Conta-me', img:'💬'},
+  {id:'q34', cat:'Quotidien', fr:'Répète', pt:'Repete', pron:'rrèu-pé-teu',
+   example:'Repete, por favor, não ouvi.', exampleFr:'Répète, s\'il te plaît, j\'ai pas entendu.',
+   syn:'Diz outra vez', img:'🔁'},
+  {id:'q35', cat:'Quotidien', fr:'Parle plus lentement', pt:'Fala mais devagar', pron:'fa-la maïch deu-va-gar',
+   example:'Fala mais devagar, não percebo.', exampleFr:'Parle plus lentement, je comprends pas.',
+   img:'🐌'},
+  {id:'q36', cat:'Quotidien', fr:'C\'est quoi ce mot ?', pt:'O que é esta palavra?', pron:'ou keu é èch-ta pa-la-vra',
+   example:'O que é esta palavra em português?', exampleFr:'C\'est quoi ce mot en portugais ?',
+   img:'❓'},
+  {id:'q37', cat:'Quotidien', fr:'Je comprends pas', pt:'Não percebo', pron:'nawn per-sé-bou',
+   example:'Não percebo nada.', exampleFr:'Je comprends rien.',
+   syn:'Não compreendo, Não entendo', img:'🤷'},
+  {id:'q38', cat:'Quotidien', fr:'Tu parles français ?', pt:'Falas francês?', pron:'fa-lach fran-sèch',
+   example:'Falas francês ou inglês?', exampleFr:'Tu parles français ou anglais ?',
+   img:'🇫🇷'},
+
+  // ---- COMPLICES ----
+  {id:'c1', cat:'Complices', fr:'Il nous regarde', pt:'Está a olhar para nós', pron:'èch-ta a o-lyar pa-ra nôch',
+   example:'Cuidado, está a olhar para nós!', exampleFr:'Attention, il nous regarde !',
+   img:'👀'},
+  {id:'c2', cat:'Complices', fr:'Fais semblant', pt:'Faz de conta', pron:'fach deu kon-ta',
+   example:'Faz de conta que não viste nada.', exampleFr:'Fais semblant de n\'avoir rien vu.',
+   syn:'Finge, Faz como se', img:'🎭'},
+  {id:'c3', cat:'Complices', fr:'On s\'en va', pt:'Vamo-nos embora', pron:'va-mou-nouch êm-bô-ra',
+   example:'Vamo-nos embora daqui.', exampleFr:'On s\'en va d\'ici.',
+   syn:'Vamos sair, Bazamos', img:'🚶'},
+  {id:'c4', cat:'Complices', fr:'Encore lui !', pt:'Outra vez ele!', pron:'ô-tra vèch él',
+   example:'Outra vez ele aqui!', exampleFr:'Encore lui ici !',
+   img:'🙄'},
+  {id:'c5', cat:'Complices', fr:'Laisse tomber', pt:'Deixa estar', pron:'daï-cha èch-tar',
+   example:'Deixa estar, não vale a pena.', exampleFr:'Laisse tomber, ça vaut pas le coup.',
+   syn:'Esquece, Deixa lá', img:'🤷'},
+  {id:'c6', cat:'Complices', fr:'N\'importe quoi', pt:'Que disparate', pron:'keu dich-pa-rat',
+   example:'Que disparate, não faz sentido!', exampleFr:'N\'importe quoi, ça a pas de sens !',
+   syn:'Que absurdo, Que tolice', img:'🤦'},
+  {id:'c7', cat:'Complices', fr:'C\'est notre secret', pt:'É o nosso segredo', pron:'é ou nos-sou seu-gré-dou',
+   example:'É o nosso segredo, não contes a ninguém.', exampleFr:'C\'est notre secret, n\'en parle à personne.',
+   img:'🤫'},
+  {id:'c8', cat:'Complices', fr:'Tu rigoles ?', pt:'Estás a brincar?', pron:'èch-tach a brin-kar',
+   example:'Estás a brincar comigo?', exampleFr:'Tu rigoles avec moi ?',
+   syn:'Estás a gozar?, A sério?', img:'😂'},
+  {id:'c9', cat:'Complices', fr:'T\'es sérieux ?', pt:'Falas a sério?', pron:'fa-lach a sé-riou',
+   example:'Falas a sério ou estás a brincar?', exampleFr:'T\'es sérieux ou tu rigoles ?',
+   syn:'A sério?, Estás a falar a sério?', img:'🤨'},
+  {id:'c10', cat:'Complices', fr:'J\'y crois pas', pt:'Não acredito', pron:'nawn a-kreu-di-tou',
+   example:'Não acredito no que estou a ver!', exampleFr:'J\'y crois pas à ce que je vois !',
+   syn:'Não é possível, Inacreditável', img:'😲'},
+  {id:'c11', cat:'Complices', fr:'Il exagère', pt:'Está a exagerar', pron:'èch-ta a è-za-jeu-rar',
+   example:'Ele está a exagerar, não é assim.', exampleFr:'Il exagère, c\'est pas comme ça.',
+   syn:'Está a fazer uma cena', img:'🙄'},
+  {id:'c12', cat:'Complices', fr:'Il est relou', pt:'É um chato', pron:'é oum chato',
+   example:'É um chato, não o atures.', exampleFr:'Il est relou, fais pas attention.',
+   syn:'É um maçador, É irritante', img:'😒'},
+  {id:'c13', cat:'Complices', fr:'Il me saoule', pt:'Está-me a chatear', pron:'èch-ta-meu a cha-tèar',
+   example:'Ele está-me a chatear imenso!', exampleFr:'Il me saoule grave !',
+   syn:'Está-me a irritar, Está-me a aborrecer', img:'😤'},
+  {id:'c14', cat:'Complices', fr:'Il nous prend pour qui ?', pt:'Quem pensa que somos?', pron:'kèm pên-sa keu sô-mouch',
+   example:'Quem pensa que somos? Idiotas?', exampleFr:'Il nous prend pour qui ? Des idiots ?',
+   img:'🤨'},
+  {id:'c15', cat:'Complices', fr:'On s\'en fout', pt:'Não nos importa', pron:'nawn nouch im-por-ta',
+   example:'Não nos importa o que ele pensa.', exampleFr:'On s\'en fout de ce qu\'il pense.',
+   syn:'Estamos-nos nas tintas', img:'🤷'},
+  {id:'c16', cat:'Complices', fr:'C\'est l\'heure', pt:'É hora', pron:'é ô-ra',
+   example:'É hora de irmos embora.', exampleFr:'C\'est l\'heure qu\'on y aille.',
+   syn:'Está na hora', img:'🕐'},
+  {id:'c17', cat:'Complices', fr:'Allez on y va', pt:'Vá, vamos lá', pron:'va, va-mouch la',
+   example:'Vá, vamos lá, está na hora!', exampleFr:'Allez on y va, c\'est l\'heure !',
+   syn:'Anda lá, Vamos embora', img:'🚀'},
+  {id:'c18', cat:'Complices', fr:'Vite fait', pt:'Rápido', pron:'rra-pi-dou',
+   example:'Faz isso rápido!', exampleFr:'Fais ça vite fait !',
+   syn:'Depressa, Rapidamente', img:'⚡'},
+  {id:'c19', cat:'Complices', fr:'Sans se faire remarquer', pt:'Sem dar nas vistas', pron:'sêm dar nach vich-tach',
+   example:'Vamos sair sem dar nas vistas.', exampleFr:'On va partir sans se faire remarquer.',
+   syn:'Discretamente, Sem ninguém notar', img:'🤫'},
+  {id:'c20', cat:'Complices', fr:'Fais comme si de rien', pt:'Faz de conta que nada', pron:'fach deu kon-ta keu na-da',
+   example:'Faz de conta que nada aconteceu.', exampleFr:'Fais comme si de rien n\'était.',
+   syn:'Finge que não viste', img:'😇'},
+  {id:'c21', cat:'Complices', fr:'Souris !', pt:'Sorri!', pron:'sou-rri',
+   example:'Sorri! Ele está a olhar.', exampleFr:'Souris ! Il regarde.',
+   img:'😊'},
+  {id:'c22', cat:'Complices', fr:'Regarde pas', pt:'Não olhes', pron:'nawn o-lyèch',
+   example:'Não olhes agora, está ali.', exampleFr:'Regarde pas maintenant, il est là.',
+   syn:'Não vejas', img:'🙈'},
+  {id:'c23', cat:'Complices', fr:'Tourne-toi', pt:'Vira-te', pron:'vi-ra-teu',
+   example:'Vira-te para o outro lado.', exampleFr:'Tourne-toi de l\'autre côté.',
+   syn:'Volta-te', img:'↩️'},
+  {id:'c24', cat:'Complices', fr:'Viens par là', pt:'Vem para aqui', pron:'vèm pa-ra a-ki',
+   example:'Vem para aqui rapidinho!', exampleFr:'Viens par là vite !',
+   syn:'Vem cá, Anda para aqui', img:'👉'},
+  {id:'c25', cat:'Complices', fr:'Reste près de moi', pt:'Fica perto de mim', pron:'fi-ka per-tou deu mim',
+   example:'Fica perto de mim, não me deixes.', exampleFr:'Reste près de moi, me laisse pas.',
+   syn:'Fica ao meu lado', img:'🤝'},
+  {id:'c26', cat:'Complices', fr:'Je suis là', pt:'Estou aqui', pron:'èch-tô a-ki',
+   example:'Estou aqui, não te preocupes.', exampleFr:'Je suis là, t\'inquiète pas.',
+   syn:'Estou contigo', img:'💪'},
+  {id:'c27', cat:'Complices', fr:'T\'inquiète, je gère', pt:'Não te preocupes, eu trato', pron:'nawn teu prèu-kou-pèch, éu tra-tou',
+   example:'Não te preocupes, eu trato disso.', exampleFr:'T\'inquiète, je gère ça.',
+   syn:'Eu resolvo, Deixa comigo', img:'👍'},
+
+  // ---- NOMBRES ----
+  {id:'n1', cat:'Nombres', fr:'1 — un', pt:'Um / Uma', pron:'oum / ou-ma',
+   example:'Quero um café, por favor.', exampleFr:'Je veux un café, s\'il te plaît.',
+   img:'➁'},
+  {id:'n2', cat:'Nombres', fr:'2 — deux', pt:'Dois / Duas', pron:'doïch / dou-ach',
+   example:'Tenho duas irmãs.', exampleFr:'J\'ai deux sœurs.',
+   img:'➂'},
+  {id:'n3', cat:'Nombres', fr:'3 — trois', pt:'Três', pron:'trèch',
+   example:'São três horas.', exampleFr:'Il est trois heures.',
+   img:'➃'},
+  {id:'n4', cat:'Nombres', fr:'4 — quatre', pt:'Quatro', pron:'kwa-trou',
+   example:'Somos quatro pessoas.', exampleFr:'On est quatre personnes.',
+   img:'➄'},
+  {id:'n5', cat:'Nombres', fr:'5 — cinq', pt:'Cinco', pron:'sin-kou',
+   example:'Espera cinco minutos.', exampleFr:'Attends cinq minutes.',
+   img:'➅'},
+  {id:'n6', cat:'Nombres', fr:'6 — six', pt:'Seis', pron:'séïch',
+   example:'Trabalho seis dias por semana.', exampleFr:'Je travaille six jours par semaine.',
+   img:'➆'},
+  {id:'n7', cat:'Nombres', fr:'7 — sept', pt:'Sete', pron:'sét',
+   example:'São sete e meia.', exampleFr:'Il est sept heures et demie.',
+   img:'➇'},
+  {id:'n8', cat:'Nombres', fr:'8 — huit', pt:'Oito', pron:'oï-tou',
+   example:'Começo às oito.', exampleFr:'Je commence à huit heures.',
+   img:'➈'},
+  {id:'n9', cat:'Nombres', fr:'9 — neuf', pt:'Nove', pron:'nôv',
+   example:'Tenho nove anos.', exampleFr:'J\'ai neuf ans.',
+   img:'➉'},
+  {id:'n10', cat:'Nombres', fr:'10 — dix', pt:'Dez', pron:'dèch',
+   example:'Já são dez horas!', exampleFr:'Il est déjà dix heures !',
+   img:'🔟'},
+  {id:'n11', cat:'Nombres', fr:'11 — onze', pt:'Onze', pron:'on-zeu',
+   example:'Chego às onze.', exampleFr:'J\'arrive à onze heures.',
+   img:'1️⃣1️⃣'},
+  {id:'n12', cat:'Nombres', fr:'12 — douze', pt:'Doze', pron:'dôz',
+   example:'É meio-dia, são doze horas.', exampleFr:'C\'est midi, il est douze heures.',
+   img:'🕛'},
+  {id:'n13', cat:'Nombres', fr:'13 — treize', pt:'Treze', pron:'trèz',
+   example:'Hoje é dia treze.', exampleFr:'Aujourd\'hui c\'est le treize.',
+   img:'1️⃣3️⃣'},
+  {id:'n14', cat:'Nombres', fr:'14 — quatorze', pt:'Catorze', pron:'ka-torz',
+   example:'Tenho catorze anos.', exampleFr:'J\'ai quatorze ans.',
+   img:'1️⃣4️⃣'},
+  {id:'n15', cat:'Nombres', fr:'15 — quinze', pt:'Quinze', pron:'kinz',
+   example:'Espera quinze minutos.', exampleFr:'Attends quinze minutes.',
+   img:'1️⃣5️⃣'},
+  {id:'n16', cat:'Nombres', fr:'16 — seize', pt:'Dezasseis', pron:'deu-za-séïch',
+   example:'Tenho dezasseis anos.', exampleFr:'J\'ai seize ans.',
+   img:'1️⃣6️⃣'},
+  {id:'n17', cat:'Nombres', fr:'17 — dix-sept', pt:'Dezassete', pron:'deu-za-sét',
+   example:'São dezassete horas.', exampleFr:'Il est dix-sept heures.',
+   img:'1️⃣7️⃣'},
+  {id:'n18', cat:'Nombres', fr:'18 — dix-huit', pt:'Dezoito', pron:'deu-zoï-tou',
+   example:'Ele tem dezoito anos.', exampleFr:'Il a dix-huit ans.',
+   img:'1️⃣8️⃣'},
+  {id:'n19', cat:'Nombres', fr:'19 — dix-neuf', pt:'Dezanove', pron:'deu-za-nôv',
+   example:'Falta dezanove dias.', exampleFr:'Il manque dix-neuf jours.',
+   img:'1️⃣9️⃣'},
+  {id:'n20', cat:'Nombres', fr:'20 — vingt', pt:'Vinte', pron:'vint',
+   example:'Vinte euros, por favor.', exampleFr:'Vingt euros, s\'il te plaît.',
+   img:'2️⃣0️⃣'},
+  {id:'n21', cat:'Nombres', fr:'30 — trente', pt:'Trinta', pron:'trin-ta',
+   example:'Tenho trinta anos.', exampleFr:'J\'ai trente ans.',
+   img:'3️⃣0️⃣'},
+  {id:'n22', cat:'Nombres', fr:'40 — quarante', pt:'Quarenta', pron:'kwa-rên-ta',
+   example:'Ela tem quarenta e dois.', exampleFr:'Elle a quarante-deux ans.',
+   img:'4️⃣0️⃣'},
+  {id:'n23', cat:'Nombres', fr:'50 — cinquante', pt:'Cinquenta', pron:'sin-kwên-ta',
+   example:'Custa cinquenta euros.', exampleFr:'Ça coûte cinquante euros.',
+   img:'5️⃣0️⃣'},
+  {id:'n24', cat:'Nombres', fr:'60 — soixante', pt:'Sessenta', pron:'seu-sên-ta',
+   example:'Sessenta pessoas vieram.', exampleFr:'Soixante personnes sont venues.',
+   img:'6️⃣0️⃣'},
+  {id:'n25', cat:'Nombres', fr:'70 — soixante-dix', pt:'Setenta', pron:'seu-tên-ta',
+   example:'Meu avô tem setenta anos.', exampleFr:'Mon grand-père a soixante-dix ans.',
+   img:'7️⃣0️⃣'},
+  {id:'n26', cat:'Nombres', fr:'80 — quatre-vingts', pt:'Oitenta', pron:'oï-tên-ta',
+   example:'Paguei oitenta euros.', exampleFr:'J\'ai payé quatre-vingts euros.',
+   img:'8️⃣0️⃣'},
+  {id:'n27', cat:'Nombres', fr:'90 — quatre-vingt-dix', pt:'Noventa', pron:'nou-vên-ta',
+   example:'Faltam noventa dias.', exampleFr:'Il manque quatre-vingt-dix jours.',
+   img:'9️⃣0️⃣'},
+  {id:'n28', cat:'Nombres', fr:'100 — cent', pt:'Cem', pron:'sêm',
+   example:'Custa cem euros.', exampleFr:'Ça coûte cent euros.',
+   img:'💯'},
+  {id:'n29', cat:'Nombres', fr:'Premier', pt:'Primeiro', pron:'pri-mèï-rou',
+   example:'Sou o primeiro da fila.', exampleFr:'Je suis le premier de la file.',
+   img:'🥇'},
+  {id:'n30', cat:'Nombres', fr:'Deuxième', pt:'Segundo', pron:'seu-goun-dou',
+   example:'Esta é a segunda vez.', exampleFr:'C\'est la deuxième fois.',
+   img:'🥈'},
+  {id:'n31', cat:'Nombres', fr:'Troisième', pt:'Terceiro', pron:'ter-séï-rou',
+   example:'Moro no terceiro andar.', exampleFr:'J\'habite au troisième étage.',
+   img:'🥉'},
+  {id:'n32', cat:'Nombres', fr:'Combien ?', pt:'Quantos?', pron:'kwan-touch',
+   example:'Quantos são?', exampleFr:'Combien sont-ils ?',
+   syn:'Quantas?, Quanto?', img:'❓'},
+  {id:'n33', cat:'Nombres', fr:'Beaucoup', pt:'Muito', pron:'mwi-tou',
+   example:'Tenho muito trabalho.', exampleFr:'J\'ai beaucoup de travail.',
+   syn:'Bastante, Imenso', img:'📦'},
+  {id:'n34', cat:'Nombres', fr:'Peu', pt:'Pouco', pron:'pô-kou',
+   example:'Tenho pouco tempo.', exampleFr:'J\'ai peu de temps.',
+   syn:'Escasso', img:'🤏'},
+  {id:'n35', cat:'Nombres', fr:'Assez', pt:'Suficiente', pron:'sou-fi-si-ênt',
+   example:'Já é suficiente, obrigado.', exampleFr:'C\'est assez, merci.',
+   syn:'Basta, Chega', img:'✅'},
+  {id:'n36', cat:'Nombres', fr:'Trop', pt:'Demasiado', pron:'deu-ma-zia-dou',
+   example:'É demasiado caro!', exampleFr:'C\'est trop cher !',
+   syn:'Muito, Excessivo', img:'❌'},
+  {id:'n37', cat:'Nombres', fr:'Plus', pt:'Mais', pron:'maïch',
+   example:'Quero mais café.', exampleFr:'Je veux plus de café.',
+   img:'➕'},
+  {id:'n38', cat:'Nombres', fr:'Moins', pt:'Menos', pron:'mé-nouch',
+   example:'Custa menos que isso.', exampleFr:'Ça coûte moins que ça.',
+   img:'➖'},
+  {id:'n39', cat:'Nombres', fr:'La moitié', pt:'Metade', pron:'meu-tad',
+   example:'Dá-me metade disso.', exampleFr:'Donne-moi la moitié de ça.',
+   syn:'Meio', img:'½️'},
+  {id:'n40', cat:'Nombres', fr:'Le quart', pt:'Um quarto', pron:'oum kwar-tou',
+   example:'São três e um quarto.', exampleFr:'Il est trois heures et quart.',
+   img:'¼️'},
+
+  // ---- JOURS ET TEMPS ----
+  {id:'t1', cat:'Temps', fr:'Lundi', pt:'Segunda-feira', pron:'seu-goun-da féï-ra',
+   example:'Na segunda-feira começo trabalhar.', exampleFr:'Lundi je commence à travailler.',
+   img:'📅'},
+  {id:'t2', cat:'Temps', fr:'Mardi', pt:'Terça-feira', pron:'ter-sa féï-ra',
+   example:'Na terça tenho consulta.', exampleFr:'Mardi j\'ai rendez-vous.',
+   img:'📅'},
+  {id:'t3', cat:'Temps', fr:'Mercredi', pt:'Quarta-feira', pron:'kwar-ta féï-ra',
+   example:'Na quarta vou ao cinema.', exampleFr:'Mercredi je vais au cinéma.',
+   img:'📅'},
+  {id:'t4', cat:'Temps', fr:'Jeudi', pt:'Quinta-feira', pron:'kin-ta féï-ra',
+   example:'Na quinta fomos jantar fora.', exampleFr:'Jeudi on est allé dîner dehors.',
+   img:'📅'},
+  {id:'t5', cat:'Temps', fr:'Vendredi', pt:'Sexta-feira', pron:'séch-ta féï-ra',
+   example:'Na sexta saio mais cedo.', exampleFr:'Vendredi je sors plus tôt.',
+   img:'🎉'},
+  {id:'t6', cat:'Temps', fr:'Samedi', pt:'Sábado', pron:'sa-ba-dou',
+   example:'No sábado vou descansar.', exampleFr:'Samedi je vais me reposer.',
+   img:'🎆'},
+  {id:'t7', cat:'Temps', fr:'Dimanche', pt:'Domingo', pron:'dou-min-gou',
+   example:'Ao domingo vou à missa.', exampleFr:'Dimanche je vais à la messe.',
+   img:'🛐'},
+  {id:'t8', cat:'Temps', fr:'Aujourd\'hui', pt:'Hoje', pron:'ôj',
+   example:'Hoje está um dia lindo!', exampleFr:'Aujourd\'hui c\'est une belle journée !',
+   img:'🌞'},
+  {id:'t9', cat:'Temps', fr:'Demain', pt:'Amanhã', pron:'a-man-yan',
+   example:'Amanhã vou trabalhar.', exampleFr:'Demain je vais travailler.',
+   img:'➡️'},
+  {id:'t10', cat:'Temps', fr:'Hier', pt:'Ontem', pron:'on-têm',
+   example:'Ontem fui ao cinema.', exampleFr:'Hier je suis allé au cinéma.',
+   img:'⬅️'},
+  {id:'t11', cat:'Temps', fr:'Ce matin', pt:'Esta manhã', pron:'èch-ta man-yan',
+   example:'Esta manhã acordei cedo.', exampleFr:'Ce matin je me suis levé tôt.',
+   img:'🌄'},
+  {id:'t12', cat:'Temps', fr:'Cet après-midi', pt:'Esta tarde', pron:'èch-ta tard',
+   example:'Esta tarde vou sair.', exampleFr:'Cet après-midi je vais sortir.',
+   img:'☀️'},
+  {id:'t13', cat:'Temps', fr:'Ce soir', pt:'Esta noite', pron:'èch-ta noït',
+   example:'Esta noite fico em casa.', exampleFr:'Ce soir je reste à la maison.',
+   img:'🌙'},
+  {id:'t14', cat:'Temps', fr:'Cette semaine', pt:'Esta semana', pron:'èch-ta seu-man-a',
+   example:'Esta semana tenho muito trabalho.', exampleFr:'Cette semaine j\'ai beaucoup de travail.',
+   img:'📅'},
+  {id:'t15', cat:'Temps', fr:'La semaine prochaine', pt:'A semana que vem', pron:'a seu-man-a keu vèm',
+   example:'A semana que vem vou de férias.', exampleFr:'La semaine prochaine je pars en vacances.',
+   syn:'Para a semana, Próxima semana', img:'📆'},
+  {id:'t16', cat:'Temps', fr:'La semaine dernière', pt:'A semana passada', pron:'a seu-man-a pa-sa-da',
+   example:'A semana passada estive doente.', exampleFr:'La semaine dernière j\'étais malade.',
+   syn:'Na semana anterior', img:'🗓️'},
+  {id:'t17', cat:'Temps', fr:'Ce mois-ci', pt:'Este mês', pron:'ècht mèch',
+   example:'Este mês não tenho dinheiro.', exampleFr:'Ce mois-ci j\'ai pas d\'argent.',
+   img:'📆'},
+  {id:'t18', cat:'Temps', fr:'Cette année', pt:'Este ano', pron:'ècht a-nou',
+   example:'Este ano vou fazer muitas viagens.', exampleFr:'Cette année je vais faire beaucoup de voyages.',
+   img:'🎆'},
+  {id:'t19', cat:'Temps', fr:'Maintenant', pt:'Agora', pron:'a-gô-ra',
+   example:'Agora não posso falar.', exampleFr:'Maintenant je peux pas parler.',
+   syn:'Neste momento, Já', img:'⏱️'},
+  {id:'t20', cat:'Temps', fr:'Tout à l\'heure', pt:'Daqui a pouco', pron:'da-ki a pô-kou',
+   example:'Daqui a pouco vou sair.', exampleFr:'Tout à l\'heure je vais sortir.',
+   syn:'Já, Logo', img:'⏰'},
+  {id:'t21', cat:'Temps', fr:'Bientôt', pt:'Em breve', pron:'êm brèv',
+   example:'Em breve vamos nos ver.', exampleFr:'Bientôt on va se voir.',
+   syn:'Dentro em pouco, Logo', img:'🕐'},
+  {id:'t22', cat:'Temps', fr:'Jamais', pt:'Nunca', pron:'noun-ka',
+   example:'Nunca fui à China.', exampleFr:'Je suis jamais allé en Chine.',
+   img:'❌'},
+  {id:'t23', cat:'Temps', fr:'Toujours', pt:'Sempre', pron:'sêm-preu',
+   example:'Sempre chego atrasado.', exampleFr:'J\'arrive toujours en retard.',
+   img:'♾️'},
+  {id:'t24', cat:'Temps', fr:'Souvent', pt:'Muitas vezes', pron:'mwi-tach vé-zèch',
+   example:'Muitas vezes fico até tarde.', exampleFr:'Souvent je reste jusqu\'à tard.',
+   syn:'Frequentemente', img:'🔁'},
+  {id:'t25', cat:'Temps', fr:'Parfois', pt:'Às vezes', pron:'ach vé-zèch',
+   example:'Às vezes vou ao ginásio.', exampleFr:'Parfois je vais à la salle de sport.',
+   syn:'De vez em quando', img:'🤷'},
+  {id:'t26', cat:'Temps', fr:'Rarement', pt:'Raramente', pron:'rra-ra-mênt',
+   example:'Raramente como fast food.', exampleFr:'Rarement je mange du fast food.',
+   syn:'Poucas vezes', img:'🐌'},
+
+  // ---- MÉTÉO ET ESPACE ----
+  {id:'m1', cat:'Météo', fr:'Il fait beau', pt:'Está bom tempo', pron:'èch-ta bom têm-pou',
+   example:'Está bom tempo hoje!', exampleFr:'Il fait beau aujourd\'hui !',
+   syn:'Está um dia lindo', img:'☀️'},
+  {id:'m2', cat:'Météo', fr:'Il fait mauvais', pt:'Está mau tempo', pron:'èch-ta mau têm-pou',
+   example:'Está mau tempo lá fora.', exampleFr:'Il fait mauvais dehors.',
+   syn:'O tempo está horrivel', img:'☁️'},
+  {id:'m3', cat:'Météo', fr:'Il pleut', pt:'Está a chover', pron:'èch-ta a chô-vèr',
+   example:'Está a chover muito!', exampleFr:'Il pleut beaucoup !',
+   syn:'Chove', img:'🌧️'},
+  {id:'m4', cat:'Météo', fr:'Il fait froid', pt:'Está frio', pron:'èch-ta fri-ou',
+   example:'Está frio, veste um casaco.', exampleFr:'Il fait froid, mets une veste.',
+   syn:'Está gelado', img:'❄️'},
+  {id:'m5', cat:'Météo', fr:'Il fait chaud', pt:'Está calor', pron:'èch-ta ka-lor',
+   example:'Está muito calor hoje!', exampleFr:'Il fait très chaud aujourd\'hui !',
+   syn:'Está quente', img:'🔥'},
+  {id:'m6', cat:'Météo', fr:'Le soleil', pt:'O sol', pron:'ou sol',
+   example:'O sol está forte hoje.', exampleFr:'Le soleil est fort aujourd\'hui.',
+   img:'☀️'},
+  {id:'m7', cat:'Météo', fr:'Le vent', pt:'O vento', pron:'ou vên-tou',
+   example:'Está muito vento!', exampleFr:'Il y a beaucoup de vent !',
+   img:'💨'},
+  {id:'m8', cat:'Météo', fr:'Le nuage', pt:'A nuvem', pron:'a nou-vèm',
+   example:'O céu está cheio de nuvens.', exampleFr:'Le ciel est plein de nuages.',
+   img:'☁️'},
+  {id:'m9', cat:'Météo', fr:'La pluie', pt:'A chuva', pron:'a chou-va',
+   example:'A chuva não para!', exampleFr:'La pluie s\'arrête pas !',
+   img:'🌧️'},
+  {id:'m10', cat:'Météo', fr:'La neige', pt:'A neve', pron:'a nèv',
+   example:'Está a cair neve!', exampleFr:'Il neige !',
+   img:'❄️'},
+  {id:'m11', cat:'Météo', fr:'Dehors', pt:'Lá fora', pron:'la fô-ra',
+   example:'Lá fora está frio.', exampleFr:'Dehors il fait froid.',
+   syn:'No exterior', img:'🌳'},
+  {id:'m12', cat:'Météo', fr:'Dedans', pt:'Lá dentro', pron:'la dên-trou',
+   example:'Lá dentro está quente.', exampleFr:'Dedans il fait chaud.',
+   syn:'No interior', img:'🏠'},
+  {id:'m13', cat:'Météo', fr:'En haut', pt:'Em cima', pron:'êm si-ma',
+   example:'Está em cima da mesa.', exampleFr:'C\'est en haut de la table.',
+   syn:'Lá em cima', img:'⬆️'},
+  {id:'m14', cat:'Météo', fr:'En bas', pt:'Em baixo', pron:'êm baï-chou',
+   example:'Está em baixo da cadeira.', exampleFr:'C\'est en bas de la chaise.',
+   syn:'Lá em baixo', img:'⬇️'},
+  {id:'m15', cat:'Météo', fr:'À gauche', pt:'À esquerda', pron:'a èch-kèr-da',
+   example:'Vira à esquerda.', exampleFr:'Tourne à gauche.',
+   img:'⬅️'},
+  {id:'m16', cat:'Météo', fr:'À droite', pt:'À direita', pron:'a di-réï-ta',
+   example:'A loja é à direita.', exampleFr:'Le magasin est à droite.',
+   img:'➡️'},
+  {id:'m17', cat:'Météo', fr:'Tout droit', pt:'Em frente', pron:'êm frênt',
+   example:'Segue em frente.', exampleFr:'Continue tout droit.',
+   syn:'Sempre em frente', img:'⬆️'},
+  {id:'m18', cat:'Météo', fr:'Par là', pt:'Por ali', pron:'pour a-li',
+   example:'Vai por ali.', exampleFr:'Va par là.',
+   syn:'Naquela direção', img:'👉'},
+  {id:'m19', cat:'Météo', fr:'Par ici', pt:'Por aqui', pron:'pour a-ki',
+   example:'Vem por aqui.', exampleFr:'Viens par ici.',
+   syn:'Nesta direção', img:'👈'},
+  {id:'m20', cat:'Météo', fr:'Loin', pt:'Longe', pron:'lon-jeu',
+   example:'É longe daqui?', exampleFr:'C\'est loin d\'ici ?',
+   syn:'Distante', img:'📍'},
+  {id:'m21', cat:'Météo', fr:'Près', pt:'Perto', pron:'per-tou',
+   example:'É perto da estação.', exampleFr:'C\'est près de la gare.',
+   syn:'Próximo', img:'🎯'},
+  {id:'m22', cat:'Météo', fr:'Devant', pt:'À frente', pron:'a frênt',
+   example:'Está à frente de ti.', exampleFr:'C\'est devant toi.',
+   syn:'Em frente', img:'➡️'},
+  {id:'m23', cat:'Météo', fr:'Derrière', pt:'Atrás', pron:'a-trach',
+   example:'Está atrás da porta.', exampleFr:'C\'est derrière la porte.',
+   syn:'Por trás', img:'⬅️'},
+
+  // ---- ALIMENTS ----
+  {id:'a1', cat:'Aliments', fr:'Le café', pt:'O café', pron:'ou ka-fé',
+   example:'Quero um café, por favor.', exampleFr:'Je veux un café, s\'il te plaît.',
+   img:'☕'},
+  {id:'a2', cat:'Aliments', fr:'Le thé', pt:'O chá', pron:'ou cha',
+   example:'Prefiro chá ao café.', exampleFr:'Je préfère le thé au café.',
+   img:'🍵'},
+  {id:'a3', cat:'Aliments', fr:'L\'eau', pt:'A água', pron:'a a-gwa',
+   example:'Bebe água, faz bem.', exampleFr:'Bois de l\'eau, c\'est bon pour la santé.',
+   img:'💧'},
+  {id:'a4', cat:'Aliments', fr:'Le jus', pt:'O sumo', pron:'ou sou-mou',
+   example:'Quero um sumo de laranja.', exampleFr:'Je veux un jus d\'orange.',
+   syn:'O suco', img:'🧋'},
+  {id:'a5', cat:'Aliments', fr:'Le pain', pt:'O pão', pron:'ou pawn',
+   example:'Compra pão na padaria.', exampleFr:'Achète du pain à la boulangerie.',
+   img:'🥖'},
+  {id:'a6', cat:'Aliments', fr:'Le sandwich', pt:'A sandes', pron:'a san-dèch',
+   example:'Vou comer uma sandes.', exampleFr:'Je vais manger un sandwich.',
+   syn:'A sanduiche', img:'🥪'},
+  {id:'a7', cat:'Aliments', fr:'La pomme', pt:'A maçã', pron:'a ma-san',
+   example:'Esta maçã está deliciosa.', exampleFr:'Cette pomme est délicieuse.',
+   img:'🍎'},
+  {id:'a8', cat:'Aliments', fr:'La banane', pt:'A banana', pron:'a ba-na-na',
+   example:'Come uma banana.', exampleFr:'Mange une banane.',
+   img:'🍌'},
+  {id:'a9', cat:'Aliments', fr:'L\'orange', pt:'A laranja', pron:'a la-ran-ja',
+   example:'Gosto de laranjas frescas.', exampleFr:'J\'aime les oranges fraîches.',
+   img:'🍊'},
+  {id:'a10', cat:'Aliments', fr:'Le chocolat', pt:'O chocolate', pron:'ou cho-kou-lat',
+   example:'Adoro chocolate preto.', exampleFr:'J\'adore le chocolat noir.',
+   img:'🍫'},
+  {id:'a11', cat:'Aliments', fr:'Le gâteau', pt:'O bolo', pron:'ou bô-lou',
+   example:'Este bolo está ótimo!', exampleFr:'Ce gâteau est super !',
+   img:'🍰'},
+  {id:'a12', cat:'Aliments', fr:'Le sucre', pt:'O açúcar', pron:'ou a-sou-kar',
+   example:'Queres açúcar no café?', exampleFr:'Tu veux du sucre dans le café ?',
+   img:'🍬'},
+  {id:'a13', cat:'Aliments', fr:'Le sel', pt:'O sal', pron:'ou sal',
+   example:'Passa-me o sal, por favor.', exampleFr:'Passe-moi le sel, s\'il te plaît.',
+   img:'🧂'},
+  {id:'a14', cat:'Aliments', fr:'Chaud (température)', pt:'Quente', pron:'kênt',
+   example:'O café está quente.', exampleFr:'Le café est chaud.',
+   syn:'Quentinho', img:'🔥'},
+  {id:'a15', cat:'Aliments', fr:'Froid', pt:'Frio', pron:'fri-ou',
+   example:'A água está fria.', exampleFr:'L\'eau est froide.',
+   syn:'Gelado', img:'❄️'},
+  {id:'a16', cat:'Aliments', fr:'Bon', pt:'Bom', pron:'bom',
+   example:'Este bolo está bom!', exampleFr:'Ce gâteau est bon !',
+   syn:'Delicioso, Saboroso', img:'👍'},
+  {id:'a17', cat:'Aliments', fr:'Mauvais', pt:'Mau', pron:'mau',
+   example:'Este bolo não está bom.', exampleFr:'Ce gâteau est pas bon.',
+   syn:'Horrivel', img:'👎'},
+  {id:'a18', cat:'Aliments', fr:'J\'ai faim', pt:'Tenho fome', pron:'tèn-you fô-meu',
+   example:'Tenho muita fome!', exampleFr:'J\'ai très faim !',
+   syn:'Estou com fome', img:'🍴'},
+  {id:'a19', cat:'Aliments', fr:'J\'ai soif', pt:'Tenho sede', pron:'tèn-you séd',
+   example:'Tenho sede, dá-me água.', exampleFr:'J\'ai soif, donne-moi de l\'eau.',
+   syn:'Estou com sede', img:'🥤'},
+  {id:'a20', cat:'Aliments', fr:'Je veux manger', pt:'Quero comer', pron:'ké-rou kou-mèr',
+   example:'Quero comer qualquer coisa.', exampleFr:'Je veux manger quelque chose.',
+   img:'🍽️'},
+  {id:'a21', cat:'Aliments', fr:'Je veux boire', pt:'Quero beber', pron:'ké-rou beu-bèr',
+   example:'Quero beber uma cerveja.', exampleFr:'Je veux boire une bière.',
+   img:'🍺'},
+  {id:'a22', cat:'Aliments', fr:'C\'est délicieux', pt:'Está delicioso', pron:'èch-ta deu-li-siô-zou',
+   example:'Está delicioso, parabéns!', exampleFr:'C\'est délicieux, bravo !',
+   syn:'Está ótimo, É uma delícia', img:'😋'},
+  {id:'a23', cat:'Aliments', fr:'C\'est pas bon', pt:'Não está bom', pron:'nawn èch-ta bom',
+   example:'Não está bom, desculpa.', exampleFr:'C\'est pas bon, désolé.',
+   syn:'Está mau, Não presta', img:'🤮'},
+
+  // ---- PERSONNES ----
+  {id:'p1', cat:'Personnes', fr:'Mon collègue', pt:'O meu colega', pron:'ou méu kou-lé-ga',
+   example:'O meu colega é simpático.', exampleFr:'Mon collègue est sympa.',
+   img:'👨'},
+  {id:'p2', cat:'Personnes', fr:'Ma collègue', pt:'A minha colega', pron:'a min-ya kou-lé-ga',
+   example:'A minha colega ajudou-me.', exampleFr:'Ma collègue m\'a aidé.',
+   img:'👩'},
+  {id:'p3', cat:'Personnes', fr:'Le patron', pt:'O patrão', pron:'ou pa-trawn',
+   example:'O patrão está zangado.', exampleFr:'Le patron est en colère.',
+   syn:'O chefe', img:'👔'},
+  {id:'p4', cat:'Personnes', fr:'Le client', pt:'O cliente', pron:'ou kli-ênt',
+   example:'O cliente está satisfeito.', exampleFr:'Le client est satisfait.',
+   img:'🛍️'},
+  {id:'p5', cat:'Personnes', fr:'Le frère', pt:'O irmão', pron:'ou ir-mawn',
+   example:'O meu irmão vive em Lisboa.', exampleFr:'Mon frère habite à Lisbonne.',
+   img:'👦'},
+  {id:'p6', cat:'Personnes', fr:'La sœur', pt:'A irmã', pron:'a ir-man',
+   example:'A minha irmã está grávida.', exampleFr:'Ma sœur est enceinte.',
+   img:'👧'},
+  {id:'p7', cat:'Personnes', fr:'La femme (épouse)', pt:'A mulher', pron:'a mou-lyèr',
+   example:'A minha mulher é francesa.', exampleFr:'Ma femme est française.',
+   syn:'A esposa', img:'👰'},
+  {id:'p8', cat:'Personnes', fr:'Le mari', pt:'O marido', pron:'ou ma-ri-dou',
+   example:'O marido dela é português.', exampleFr:'Son mari est portugais.',
+   syn:'O esposo', img:'🤵'},
+  {id:'p9', cat:'Personnes', fr:'La fille', pt:'A filha', pron:'a fi-lya',
+   example:'A minha filha tem cinco anos.', exampleFr:'Ma fille a cinq ans.',
+   img:'👧'},
+  {id:'p10', cat:'Personnes', fr:'Le fils', pt:'O filho', pron:'ou fi-lyou',
+   example:'O meu filho estuda em Lisboa.', exampleFr:'Mon fils étudie à Lisbonne.',
+   img:'👦'},
+  {id:'p11', cat:'Personnes', fr:'L\'ami(e)', pt:'O amigo / A amiga', pron:'ou a-mi-gou / a a-mi-ga',
+   example:'A minha amiga vem hoje.', exampleFr:'Mon amie vient aujourd\'hui.',
+   img:'👫'},
+  {id:'p12', cat:'Personnes', fr:'La famille', pt:'A família', pron:'a fa-mi-lia',
+   example:'A minha família é grande.', exampleFr:'Ma famille est grande.',
+   img:'👨‍👩‍👧‍👦'},
+  {id:'p13', cat:'Personnes', fr:'Quelqu\'un', pt:'Alguém', pron:'al-guèm',
+   example:'Alguém está aí?', exampleFr:'Quelqu\'un est là ?',
+   img:'🧑'},
+  {id:'p14', cat:'Personnes', fr:'Personne (aucun)', pt:'Ninguém', pron:'nin-guèm',
+   example:'Ninguém veio hoje.', exampleFr:'Personne est venu aujourd\'hui.',
+   img:'🚫'},
+  {id:'p15', cat:'Personnes', fr:'Tout le monde', pt:'Toda a gente', pron:'tô-da a jênt',
+   example:'Toda a gente gostou.', exampleFr:'Tout le monde a aimé.',
+   syn:'Todos', img:'👥'},
+  {id:'p16', cat:'Personnes', fr:'Lui', pt:'Ele', pron:'él',
+   example:'Ele é meu amigo.', exampleFr:'Lui c\'est mon ami.',
+   img:'👨'},
+  {id:'p17', cat:'Personnes', fr:'Elle', pt:'Ela', pron:'é-la',
+   example:'Ela é muito simpática.', exampleFr:'Elle est très sympa.',
+   img:'👩'},
+  {id:'p18', cat:'Personnes', fr:'Nous', pt:'Nós', pron:'nôch',
+   example:'Nós somos amigos.', exampleFr:'Nous sommes amis.',
+   img:'👥'},
+  {id:'p19', cat:'Personnes', fr:'Vous', pt:'Vocês', pron:'vou-sèch',
+   example:'Vocês vão sair?', exampleFr:'Vous allez sortir ?',
+   img:'👥'},
+  {id:'p20', cat:'Personnes', fr:'Eux / Elles', pt:'Eles / Elas', pron:'é-lèch / é-lach',
+   example:'Eles são portugueses.', exampleFr:'Eux ils sont portugais.',
+   img:'👥'},
+
+  // ---- DESCRIPTIONS ----
+  {id:'d1', cat:'Descriptions', fr:'Grand', pt:'Alto / Grande', pron:'al-tou / grand',
+   example:'Ele é muito alto.', exampleFr:'Il est très grand.',
+   img:'🧑‍🧒'},
+  {id:'d2', cat:'Descriptions', fr:'Petit', pt:'Baixo / Pequeno', pron:'baï-chou / peu-ké-nou',
+   example:'A casa é pequena.', exampleFr:'La maison est petite.',
+   img:'🧒'},
+  {id:'d3', cat:'Descriptions', fr:'Gros', pt:'Gordo', pron:'gor-dou',
+   example:'O gato está gordo.', exampleFr:'Le chat est gros.',
+   img:'😉'},
+  {id:'d4', cat:'Descriptions', fr:'Mince', pt:'Magro', pron:'ma-grou',
+   example:'Ele é muito magro.', exampleFr:'Il est très mince.',
+   syn:'Esguio, Fino', img:'🥹'},
+  {id:'d5', cat:'Descriptions', fr:'Vieux', pt:'Velho', pron:'vè-lyou',
+   example:'A casa é velha.', exampleFr:'La maison est vieille.',
+   syn:'Antigo, Idoso', img:'👴'},
+  {id:'d6', cat:'Descriptions', fr:'Jeune', pt:'Jovem', pron:'jô-vèm',
+   example:'Ela é muito jovem.', exampleFr:'Elle est très jeune.',
+   syn:'Novo', img:'🧒'},
+  {id:'d7', cat:'Descriptions', fr:'Beau / Belle', pt:'Bonito / Bonita', pron:'bou-ni-tou / bou-ni-ta',
+   example:'Que dia bonito!', exampleFr:'Quelle belle journée !',
+   syn:'Lindo, Belo', img:'😍'},
+  {id:'d8', cat:'Descriptions', fr:'Laid / Laide', pt:'Feio / Feia', pron:'féï-ou / féï-a',
+   example:'Aquele edifício é feio.', exampleFr:'Ce bâtiment est laid.',
+   syn:'Horrível', img:'🙁'},
+  {id:'d9', cat:'Descriptions', fr:'Sympa', pt:'Simpático/a', pron:'sim-pa-ti-kou',
+   example:'Ela é muito simpática.', exampleFr:'Elle est très sympa.',
+   syn:'Agradável, Açível', img:'😊'},
+  {id:'d10', cat:'Descriptions', fr:'Gentil / Gentille', pt:'Gentil', pron:'jèn-til',
+   example:'São pessoas muito gentis.', exampleFr:'Ce sont des personnes très gentilles.',
+   syn:'Amigável, Afetuoso', img:'🥰'},
+  {id:'d11', cat:'Descriptions', fr:'Méchant', pt:'Mau / Malvado', pron:'mau / mal-va-dou',
+   example:'Ele é uma pessoa má.', exampleFr:'C\'est une personne méchante.',
+   syn:'Malig', img:'😈'},
+  {id:'d12', cat:'Descriptions', fr:'Bizarre', pt:'Estranho', pron:'èch-tran-you',
+   example:'É muito estranho.', exampleFr:'C\'est très bizarre.',
+   syn:'Esquisito, Inólito', img:'🤔'},
+  {id:'d13', cat:'Descriptions', fr:'Normal', pt:'Normal', pron:'nor-mal',
+   example:'É normal estar cansado.', exampleFr:'C\'est normal d\'être fatigué.',
+   syn:'Habitual, Comum', img:'👌'},
+  {id:'d14', cat:'Descriptions', fr:'Important', pt:'Importante', pron:'im-por-tan-teu',
+   example:'É muito importante.', exampleFr:'C\'est très important.',
+   syn:'Essencial, Fundamental', img:'❗'},
+  {id:'d15', cat:'Descriptions', fr:'Urgent', pt:'Urgente', pron:'our-jênt',
+   example:'É urgente, faz já!', exampleFr:'C\'est urgent, fais-le maintenant !',
+   syn:'Prioritário', img:'🚨'},
+  {id:'d16', cat:'Descriptions', fr:'Facile', pt:'Fácil', pron:'fa-sil',
+   example:'É muito fácil de fazer.', exampleFr:'C\'est très facile à faire.',
+   syn:'Simples', img:'😌'},
+  {id:'d17', cat:'Descriptions', fr:'Difficile', pt:'Difícil', pron:'di-fi-sil',
+   example:'É difícil aprender.', exampleFr:'C\'est difficile d\'apprendre.',
+   syn:'Complicado, Duro', img:'😓'},
+  {id:'d18', cat:'Descriptions', fr:'Rapide', pt:'Rápido', pron:'rra-pi-dou',
+   example:'Este carro é rápido.', exampleFr:'Cette voiture est rapide.',
+   syn:'Veloz, Célere', img:'⚡'},
+  {id:'d19', cat:'Descriptions', fr:'Lent', pt:'Lento', pron:'lên-tou',
+   example:'Este computador é lento.', exampleFr:'Cet ordinateur est lent.',
+   syn:'Devagar', img:'🐌'},
+  {id:'d20', cat:'Descriptions', fr:'Fort', pt:'Forte', pron:'fort',
+   example:'Ele é muito forte.', exampleFr:'Il est très fort.',
+   syn:'Poderoso, Robusto', img:'💪'},
+  {id:'d21', cat:'Descriptions', fr:'Faible', pt:'Fraco', pron:'fra-kou',
+   example:'Estou fraco, preciso comer.', exampleFr:'Je suis faible, j\'ai besoin de manger.',
+   syn:'Débil', img:'🤕'},
+  {id:'d22', cat:'Descriptions', fr:'Calme', pt:'Calmo', pron:'kal-mou',
+   example:'Ele é uma pessoa calma.', exampleFr:'C\'est une personne calme.',
+   syn:'Tranquilo, Sereno', img:'😌'},
+  {id:'d23', cat:'Descriptions', fr:'Stressé', pt:'Stressado', pron:'strè-sa-dou',
+   example:'Estou muito stressada hoje.', exampleFr:'Je suis très stressée aujourd\'hui.',
+   syn:'Nervoso, Ansioso', img:'😰'},
+  {id:'d24', cat:'Descriptions', fr:'Occupé', pt:'Ocupado', pron:'o-kou-pa-dou',
+   example:'Estou ocupado agora.', exampleFr:'Je suis occupé maintenant.',
+   syn:'Atarefado', img:'📊lready'},
+  {id:'d25', cat:'Descriptions', fr:'Libre (disponible)', pt:'Livre', pron:'li-vreu',
+   example:'Estás livre amanhã?', exampleFr:'T\'es libre demain ?',
+   syn:'Disponível', img:'✅'},
+  {id:'d26', cat:'Descriptions', fr:'Propre', pt:'Limpo', pron:'lim-pou',
+   example:'A casa está limpa.', exampleFr:'La maison est propre.',
+   syn:'Asseado', img:'✨'},
+  {id:'d27', cat:'Descriptions', fr:'Sale', pt:'Sujo', pron:'sou-jou',
+   example:'O chão está sujo.', exampleFr:'Le sol est sale.',
+   syn:'Porco, Imundo', img:'🧻'},
+
+  // ---- VERBES ----
+  {id:'v1', cat:'Verbes', fr:'Être', pt:'Ser / Estar', pron:'sèr / èch-tar',
+   example:'Sou português, estou feliz.', exampleFr:'Je suis portugais, je suis heureux.',
+   img:'✔️'},
+  {id:'v2', cat:'Verbes', fr:'Avoir', pt:'Ter', pron:'tèr',
+   example:'Tenho dois irmãos.', exampleFr:'J\'ai deux frères.',
+   img:'💜'},
+  {id:'v3', cat:'Verbes', fr:'Faire', pt:'Fazer', pron:'fa-zèr',
+   example:'O que estás a fazer?', exampleFr:'Qu\'est-ce que tu fais ?',
+   img:'🛠️'},
+  {id:'v4', cat:'Verbes', fr:'Aller', pt:'Ir', pron:'ir',
+   example:'Vou ao cinema hoje.', exampleFr:'Je vais au cinéma aujourd\'hui.',
+   img:'🚶'},
+  {id:'v5', cat:'Verbes', fr:'Venir', pt:'Vir', pron:'vir',
+   example:'Vens comigo?', exampleFr:'Tu viens avec moi ?',
+   img:'👋'},
+  {id:'v6', cat:'Verbes', fr:'Voir', pt:'Ver', pron:'vèr',
+   example:'Vejo-te amanhã.', exampleFr:'Je te vois demain.',
+   syn:'Olhar', img:'👁️'},
+  {id:'v7', cat:'Verbes', fr:'Savoir', pt:'Saber', pron:'sa-bèr',
+   example:'Não sei a resposta.', exampleFr:'Je sais pas la réponse.',
+   syn:'Conhecer', img:'🧠'},
+  {id:'v8', cat:'Verbes', fr:'Pouvoir', pt:'Poder', pron:'pou-dèr',
+   example:'Podes ajudar-me?', exampleFr:'Tu peux m\'aider ?',
+   img:'💪'},
+  {id:'v9', cat:'Verbes', fr:'Vouloir', pt:'Querer', pron:'keu-rèr',
+   example:'Quero ir contigo.', exampleFr:'Je veux aller avec toi.',
+   syn:'Desejar', img:'💖'},
+  {id:'v10', cat:'Verbes', fr:'Devoir', pt:'Ter de', pron:'tèr deu',
+   example:'Tenho de ir trabalhar.', exampleFr:'Je dois aller travailler.',
+   syn:'Dever', img:'❗'},
+  {id:'v11', cat:'Verbes', fr:'Dire', pt:'Dizer', pron:'di-zèr',
+   example:'Diz-me a verdade!', exampleFr:'Dis-moi la vérité !',
+   syn:'Contar, Falar', img:'💬'},
+  {id:'v12', cat:'Verbes', fr:'Parler', pt:'Falar', pron:'fa-lar',
+   example:'Falo português.', exampleFr:'Je parle portugais.',
+   syn:'Conversar', img:'🗣️'},
+  {id:'v13', cat:'Verbes', fr:'Écouter', pt:'Ouvir', pron:'ô-vir',
+   example:'Ouve bem o que digo.', exampleFr:'Écoute bien ce que je dis.',
+   syn:'Escutar', img:'👂'},
+  {id:'v14', cat:'Verbes', fr:'Comprendre', pt:'Perceber', pron:'per-ceu-bèr',
+   example:'Não percebo nada!', exampleFr:'Je comprends rien !',
+   syn:'Entender, Compreender', img:'🧩'},
+  {id:'v15', cat:'Verbes', fr:'Répondre', pt:'Responder', pron:'rèch-pon-dèr',
+   example:'Responde-me, por favor.', exampleFr:'Réponds-moi, s\'il te plaît.',
+   img:'✉️'},
+  {id:'v16', cat:'Verbes', fr:'Demander', pt:'Perguntar', pron:'per-goun-tar',
+   example:'Posso perguntar uma coisa?', exampleFr:'Je peux demander quelque chose ?',
+   syn:'Questionar', img:'❓'},
+  {id:'v17', cat:'Verbes', fr:'Donner', pt:'Dar', pron:'dar',
+   example:'Dá-me um copo de água.', exampleFr:'Donne-moi un verre d\'eau.',
+   syn:'Oferecer', img:'🎁'},
+  {id:'v18', cat:'Verbes', fr:'Prendre', pt:'Pegar / Tomar', pron:'peu-gar / tou-mar',
+   example:'Pega nisso, por favor.', exampleFr:'Prends ça, s\'il te plaît.',
+   syn:'Apanhar', img:'🤲'},
+  {id:'v19', cat:'Verbes', fr:'Mettre', pt:'Pôr', pron:'por',
+   example:'Põe isso ali.', exampleFr:'Mets ça là.',
+   syn:'Colocar', img:'📦'},
+  {id:'v20', cat:'Verbes', fr:'Laisser', pt:'Deixar', pron:'daï-char',
+   example:'Deixa isso aí.', exampleFr:'Laisse ça là.',
+   syn:'Abandonar', img:'👋'},
+  {id:'v21', cat:'Verbes', fr:'Trouver', pt:'Encontrar', pron:'èn-kon-trar',
+   example:'Não encontro as chaves.', exampleFr:'Je trouve pas les clés.',
+   syn:'Achar', img:'🔍'},
+  {id:'v22', cat:'Verbes', fr:'Perdre', pt:'Perder', pron:'per-dèr',
+   example:'Perdi o meu telemóvel.', exampleFr:'J\'ai perdu mon téléphone.',
+   img:'🛑'},
+  {id:'v23', cat:'Verbes', fr:'Oublier', pt:'Esquecer', pron:'èch-keu-sèr',
+   example:'Esqueci o teu nome.', exampleFr:'J\'ai oublié ton nom.',
+   img:'🧐'},
+  {id:'v24', cat:'Verbes', fr:'Se souvenir', pt:'Lembrar', pron:'lêm-brar',
+   example:'Lembro-me de ti.', exampleFr:'Je me souviens de toi.',
+   syn:'Recordar', img:'💡'},
+  {id:'v25', cat:'Verbes', fr:'Penser', pt:'Pensar', pron:'pèn-sar',
+   example:'Penso em ti sempre.', exampleFr:'Je pense à toi toujours.',
+   syn:'Refletir', img:'🤔'},
+  {id:'v26', cat:'Verbes', fr:'Croire', pt:'Acreditar', pron:'a-kreu-di-tar',
+   example:'Acredito em ti.', exampleFr:'Je crois en toi.',
+   syn:'Crer', img:'✨'},
+  {id:'v27', cat:'Verbes', fr:'Aimer', pt:'Gostar / Amar', pron:'gouch-tar / a-mar',
+   example:'Gosto muito de ti.', exampleFr:'Je t\'aime beaucoup.',
+   img:'❤️'},
+  {id:'v28', cat:'Verbes', fr:'Détester', pt:'Detestar', pron:'deu-têch-tar',
+   example:'Detesto acordar cedo.', exampleFr:'Je déteste me lever tôt.',
+   syn:'Odiar', img:'😡'},
+  {id:'v29', cat:'Verbes', fr:'Attendre', pt:'Esperar', pron:'èch-peu-rar',
+   example:'Espera por mim.', exampleFr:'Attends-moi.',
+   syn:'Aguardar', img:'⏳'},
+  {id:'v30', cat:'Verbes', fr:'Rester', pt:'Ficar', pron:'fi-kar',
+   example:'Fico em casa hoje.', exampleFr:'Je reste à la maison aujourd\'hui.',
+   syn:'Permanecer', img:'🏠'},
+  {id:'v31', cat:'Verbes', fr:'Bouger', pt:'Mexer', pron:'meu-chèr',
+   example:'Não mexas nisso!', exampleFr:'Bouge pas ça !',
+   syn:'Mover', img:'🔄'},
+  {id:'v32', cat:'Verbes', fr:'S\'arrêter', pt:'Parar', pron:'pa-rar',
+   example:'Para de fazer barulho!', exampleFr:'Arrête de faire du bruit !',
+   syn:'Cessar', img:'⛔'},
+  {id:'v33', cat:'Verbes', fr:'Continuer', pt:'Continuar', pron:'kon-ti-nwar',
+   example:'Continua a estudar.', exampleFr:'Continue à étudier.',
+   syn:'Prosseguir', img:'➡️'},
+  {id:'v34', cat:'Verbes', fr:'Essayer', pt:'Tentar', pron:'tèn-tar',
+   example:'Vou tentar outra vez.', exampleFr:'Je vais essayer encore une fois.',
+   syn:'Experimentar', img:'🎯'},
+  {id:'v35', cat:'Verbes', fr:'Réussir', pt:'Conseguir', pron:'kon-seu-guir',
+   example:'Consegui fazer!', exampleFr:'J\'ai réussi à le faire !',
+   syn:'Atingir, Obter', img:'🎆'},
+  {id:'v36', cat:'Verbes', fr:'Rater', pt:'Falhar', pron:'fa-lyar',
+   example:'Falhei no exame.', exampleFr:'J\'ai raté l\'examen.',
+   syn:'Errar', img:'❌'},
+  {id:'v37', cat:'Verbes', fr:'Aider', pt:'Ajudar', pron:'a-jou-dar',
+   example:'Podes ajudar-me?', exampleFr:'Tu peux m\'aider ?',
+   syn:'Auxiliar, Socorrer', img:'🤝'},
+  {id:'v38', cat:'Verbes', fr:'Travailler', pt:'Trabalhar', pron:'tra-ba-lyar',
+   example:'Trabalho todos os dias.', exampleFr:'Je travaille tous les jours.',
+   syn:'Laborar', img:'💼'},
+  {id:'v39', cat:'Verbes', fr:'Rigoler', pt:'Rir', pron:'rir',
+   example:'Riu-se muito!', exampleFr:'Il a rigolé beaucoup !',
+   syn:'Gargalhar', img:'😂'},
+  {id:'v40', cat:'Verbes', fr:'Sourire', pt:'Sorrir', pron:'sou-rrir',
+   example:'Sorri para mim!', exampleFr:'Souris-moi !',
+   img:'😊'},
+  {id:'v41', cat:'Verbes', fr:'Pleurer', pt:'Chorar', pron:'cho-rar',
+   example:'Não chores, vai ficar bem.', exampleFr:'Pleure pas, ça va aller.',
+   img:'😢'},
+  {id:'v42', cat:'Verbes', fr:'Crier', pt:'Gritar', pron:'gri-tar',
+   example:'Não grites comigo!', exampleFr:'Crie pas sur moi !',
+   syn:'Berrar', img:'📣'},
+  {id:'v43', cat:'Verbes', fr:'Chuchoter', pt:'Sussurrar', pron:'sou-sou-rrar',
+   example:'Sussurra, ele está a dormir.', exampleFr:'Chuchote, il dort.',
+   syn:'Murmurar, Cochichar', img:'🤫'},
+  {id:'v44', cat:'Verbes', fr:'Marcher', pt:'Andar', pron:'an-dar',
+   example:'Gosto de andar a pé.', exampleFr:'J\'aime marcher à pied.',
+   syn:'Caminhar', img:'🚶'},
+  {id:'v45', cat:'Verbes', fr:'Courir', pt:'Correr', pron:'kou-rrèr',
+   example:'Corre, estás atrasado!', exampleFr:'Cours, tu es en retard !',
+   img:'🏃'},
+  {id:'v46', cat:'Verbes', fr:'S\'asseoir', pt:'Sentar-se', pron:'sên-tar-seu',
+   example:'Senta-te aqui.', exampleFr:'Assieds-toi ici.',
+   img:'🪑'},
+  {id:'v47', cat:'Verbes', fr:'Se lever', pt:'Levantar-se', pron:'leu-van-tar-seu',
+   example:'Levanta-te, está na hora!', exampleFr:'Lève-toi, c\'est l\'heure !',
+   syn:'Acordar', img:'⬆️'},
+  {id:'v48', cat:'Verbes', fr:'Rentrer', pt:'Ir para casa', pron:'ir pa-ra ka-za',
+   example:'Vou para casa agora.', exampleFr:'Je rentre chez moi maintenant.',
+   syn:'Voltar para casa', img:'🏠'},
+  {id:'v49', cat:'Verbes', fr:'Chercher', pt:'Procurar', pron:'prou-kou-rar',
+   example:'Estou a procurar as chaves.', exampleFr:'Je cherche les clés.',
+   syn:'Buscar', img:'🔎'},
+  {id:'v50', cat:'Verbes', fr:'Appeler', pt:'Ligar / Chamar', pron:'li-gar / cha-mar',
+   example:'Liga-me quando chegares.', exampleFr:'Appelle-moi quand tu arriveras.',
+   syn:'Telefonar', img:'📱'},
+
+  // ---- CONVERSATIONS ET QUESTIONS ----
+  {id:'co1', cat:'Conversations', fr:'Qu\'est-ce que t\'as fait ce weekend ?', pt:'O que fizeste no fim de semana?', pron:'ou keu fi-zèch-teu nou fim deu seu-ma-na',
+   example:'O que fizeste no fim de semana? Foi bom?', exampleFr:'Qu\'est-ce que t\'as fait ce weekend ? C\'était bien ?',
+   img:'🤔'},
+  {id:'co2', cat:'Conversations', fr:'T\'étais où ?', pt:'Onde estavas?', pron:'ond èch-ta-vach',
+   example:'Onde estavas? Liguei-te!', exampleFr:'T\'étais où ? Je t\'ai appelé !',
+   img:'📍'},
+  {id:'co3', cat:'Conversations', fr:'Ça s\'est bien passé ?', pt:'Correu bem?', pron:'kou-rréu bèm',
+   example:'Correu bem a reunião?', exampleFr:'Ça s\'est bien passé la réunion ?',
+   syn:'Foi bom?', img:'✅'},
+  {id:'co4', cat:'Conversations', fr:'Tu penses quoi de ça ?', pt:'O que achas?', pron:'ou keu a-chach',
+   example:'O que achas desta ideia?', exampleFr:'Tu penses quoi de cette idée ?',
+   syn:'Qual é a tua opinião?', img:'🤔'},
+  {id:'co5', cat:'Conversations', fr:'C\'était comment ?', pt:'Como foi?', pron:'kô-mou foï',
+   example:'Como foi o jantar?', exampleFr:'C\'était comment le dîner ?',
+   img:'🤷'},
+  {id:'co6', cat:'Conversations', fr:'Tu m\'écoutes ?', pt:'Estás a ouvir-me?', pron:'èch-tach a o-vir-meu',
+   example:'Estás a ouvir-me ou não?', exampleFr:'Tu m\'écoutes ou pas ?',
+   syn:'Estás atento?', img:'👂'},
+  {id:'co7', cat:'Conversations', fr:'Je t\'explique', pt:'Explico-te', pron:'èch-pli-kou-teu',
+   example:'Explico-te já.', exampleFr:'Je t\'explique tout de suite.',
+   img:'📝'},
+  {id:'co8', cat:'Conversations', fr:'Tu savais pas ?', pt:'Não sabias?', pron:'nawn sa-bi-ach',
+   example:'Não sabias? Toda a gente sabe!', exampleFr:'Tu savais pas ? Tout le monde sait !',
+   img:'😲'},
+  {id:'co9', cat:'Conversations', fr:'T\'as entendu ?', pt:'Ouviste?', pron:'o-vich-teu',
+   example:'Ouviste o que ele disse?', exampleFr:'T\'as entendu ce qu\'il a dit ?',
+   img:'👂'},
+  {id:'co10', cat:'Conversations', fr:'Je te jure', pt:'Juro', pron:'jou-rou',
+   example:'Juro que é verdade!', exampleFr:'Je te jure que c\'est vrai !',
+   img:'🤞'},
+  {id:'co11', cat:'Conversations', fr:'C\'est sérieux', pt:'É a sério', pron:'é a sé-riou',
+   example:'É a sério, não estou a brincar.', exampleFr:'C\'est sérieux, je rigole pas.',
+   img:'💯'},
+  {id:'co12', cat:'Conversations', fr:'T\'imagines ?', pt:'Imagina!', pron:'i-ma-ji-na',
+   example:'Imagina o que aconteceu!', exampleFr:'T\'imagines ce qui s\'est passé !',
+   img:'😏'},
+  {id:'co13', cat:'Conversations', fr:'Je t\'avais dit', pt:'Já te disse', pron:'ja teu dis',
+   example:'Já te disse mil vezes!', exampleFr:'Je te l\'avais dit mille fois !',
+   img:'🤦'},
+  {id:'co14', cat:'Conversations', fr:'Tu te souviens ?', pt:'Lembras-te?', pron:'lêm-brac-teu',
+   example:'Lembras-te do que combinamos?', exampleFr:'Tu te souviens de ce qu\'on a prévu ?',
+   img:'💡'},
+  {id:'co15', cat:'Conversations', fr:'J\'ai une idée', pt:'Tenho uma ideia', pron:'tèn-you ou-ma i-déï-a',
+   example:'Tenho uma ideia boa!', exampleFr:'J\'ai une bonne idée !',
+   img:'💡'},
+  {id:'co16', cat:'Conversations', fr:'C\'est une bonne idée', pt:'É uma boa ideia', pron:'é ou-ma bô-a i-déï-a',
+   example:'É uma boa ideia, vamos fazer!', exampleFr:'C\'est une bonne idée, on y va !',
+   img:'👍'},
+  {id:'co17', cat:'Conversations', fr:'C\'est pas une bonne idée', pt:'Não é boa ideia', pron:'nawn é bô-a i-déï-a',
+   example:'Não é boa ideia sair agora.', exampleFr:'C\'est pas une bonne idée de sortir maintenant.',
+   img:'👎'},
+  {id:'co18', cat:'Conversations', fr:'Dis-moi tout', pt:'Conta-me tudo', pron:'kon-ta-meu tou-dou',
+   example:'Conta-me tudo o que aconteceu!', exampleFr:'Dis-moi tout ce qui s\'est passé !',
+   img:'🗣️'},
+  {id:'co19', cat:'Conversations', fr:'Et alors ?', pt:'E então?', pron:'i ên-tawn',
+   example:'E então? O que fizeste?', exampleFr:'Et alors ? Qu\'as-tu fait ?',
+   img:'🤷'},
+  {id:'co20', cat:'Conversations', fr:'Et après ?', pt:'E depois?', pron:'i deu-poïch',
+   example:'E depois o que aconteceu?', exampleFr:'Et après qu\'est-ce qui s\'est passé ?',
+   img:'➡️'},
+  {id:'co21', cat:'Conversations', fr:'Vraiment ?', pt:'A sério?', pron:'a sé-riou',
+   example:'A sério? Não acredito!', exampleFr:'Vraiment ? J\'y crois pas !',
+   syn:'A verdade?', img:'😲'},
+  {id:'co22', cat:'Conversations', fr:'C\'est vrai', pt:'É verdade', pron:'é ver-dad',
+   example:'É verdade, estou a falar a sério.', exampleFr:'C\'est vrai, je suis sérieux.',
+   syn:'É real', img:'✅'},
+  {id:'co23', cat:'Conversations', fr:'C\'est pas vrai', pt:'Não é verdade', pron:'nawn é ver-dad',
+   example:'Não é verdade, é mentira.', exampleFr:'C\'est pas vrai, c\'est un mensonge.',
+   syn:'É falso', img:'❌'},
+  {id:'co24', cat:'Conversations', fr:'J\'ai quelque chose à te dire', pt:'Tenho uma coisa para te dizer', pron:'tèn-you ou-ma koï-za pa-ra teu di-zèr',
+   example:'Tenho uma coisa importante para te dizer.', exampleFr:'J\'ai quelque chose d\'important à te dire.',
+   img:'💬'},
+  {id:'co25', cat:'Conversations', fr:'Tu me manques', pt:'Tenho saudades tuas', pron:'tèn-you sau-dad-èch tou-ach',
+   example:'Tenho tantas saudades tuas!', exampleFr:'Tu me manques tellement !',
+   img:'💔'},
+
+  // ---- VIE PERSO ET LOISIRS ----
+  {id:'vp1', cat:'Vie perso', fr:'Tu habites où ?', pt:'Onde moras?', pron:'ond mô-rach',
+   example:'Onde moras em Lisboa?', exampleFr:'Tu habites où à Lisbonne ?',
+   img:'🏠'},
+  {id:'vp2', cat:'Vie perso', fr:'J\'habite à…', pt:'Moro em…', pron:'mô-rou êm',
+   example:'Moro em Cascais.', exampleFr:'J\'habite à Cascais.',
+   img:'📍'},
+  {id:'vp3', cat:'Vie perso', fr:'T\'as des enfants ?', pt:'Tens filhos?', pron:'tênch fi-lyouch',
+   example:'Tens filhos? Quantos?', exampleFr:'T\'as des enfants ? Combien ?',
+   img:'👶'},
+  {id:'vp4', cat:'Vie perso', fr:'T\'as quel âge ?', pt:'Quantos anos tens?', pron:'kwan-touch a-nouch tênch',
+   example:'Quantos anos tens?', exampleFr:'T\'as quel âge ?',
+   syn:'Que idade tens?', img:'🎂'},
+  {id:'vp5', cat:'Vie perso', fr:'J\'aime regarder des séries', pt:'Gosto de ver séries', pron:'gôch-tou deu vèr sé-riech',
+   example:'Gosto de ver séries no Netflix.', exampleFr:'J\'aime regarder des séries sur Netflix.',
+   img:'📺'},
+  {id:'vp6', cat:'Vie perso', fr:'J\'aime la musique', pt:'Gosto de música', pron:'gôch-tou deu mou-zi-ka',
+   example:'Gosto muito de música portuguesa.', exampleFr:'J\'aime beaucoup la musique portugaise.',
+   img:'🎵'},
+  {id:'vp7', cat:'Vie perso', fr:'Tu aimes quoi comme musique ?', pt:'Que música gostas?', pron:'keu mou-zi-ka gôch-tach',
+   example:'Que música gostas de ouvir?', exampleFr:'Tu aimes quoi comme musique ?',
+   img:'🎧'},
+  {id:'vp8', cat:'Vie perso', fr:'Je fais du sport', pt:'Faço desporto', pron:'fa-sou dèch-por-tou',
+   example:'Faço desporto três vezes por semana.', exampleFr:'Je fais du sport trois fois par semaine.',
+   img:'🏋️'},
+  {id:'vp9', cat:'Vie perso', fr:'Le weekend', pt:'O fim de semana', pron:'ou fim deu seu-ma-na',
+   example:'No fim de semana vou descansar.', exampleFr:'Le weekend je vais me reposer.',
+   img:'🎉'},
+  {id:'vp10', cat:'Vie perso', fr:'Chez moi', pt:'Em minha casa', pron:'êm min-ya ka-za',
+   example:'Vem a minha casa amanhã.', exampleFr:'Viens chez moi demain.',
+   syn:'Na minha casa', img:'🏠'},
+  {id:'vp11', cat:'Vie perso', fr:'Chez toi', pt:'Em tua casa', pron:'êm tou-a ka-za',
+   example:'Posso ir a tua casa?', exampleFr:'Je peux aller chez toi ?',
+   syn:'Na tua casa', img:'🚪'},
+  {id:'vp12', cat:'Vie perso', fr:'J\'ai besoin de me reposer', pt:'Preciso de descansar', pron:'prèu-si-zou deu dèch-kan-sar',
+   example:'Preciso de descansar um pouco.', exampleFr:'J\'ai besoin de me reposer un peu.',
+   img:'😴'},
+  {id:'vp13', cat:'Vie perso', fr:'Tu rentres à quelle heure ?', pt:'A que horas chegas a casa?', pron:'a keu ô-rach ché-gach a ka-za',
+   example:'A que horas chegas a casa hoje?', exampleFr:'Tu rentres à quelle heure aujourd\'hui ?',
+   img:'🕒'},
+  {id:'vp14', cat:'Vie perso', fr:'Ma famille me manque', pt:'Tenho saudades da minha família', pron:'tèn-you sau-dad-èch da min-ya fa-mi-lia',
+   example:'Tenho saudades da minha família.', exampleFr:'Ma famille me manque.',
+   img:'👨‍👩‍👧'},
+  {id:'vp15', cat:'Vie perso', fr:'Le Portugal me manque', pt:'Tenho saudades de Portugal', pron:'tèn-you sau-dad-èch deu por-tou-gal',
+   example:'Tenho saudades do meu país.', exampleFr:'Mon pays me manque.',
+   img:'🇵🇹'},
+  {id:'vp16', cat:'Vie perso', fr:'Mon pays', pt:'O meu país', pron:'ou méu pa-ich',
+   example:'O meu país é Portugal.', exampleFr:'Mon pays est le Portugal.',
+   img:'🇺🇳'},
+  {id:'vp17', cat:'Vie perso', fr:'La France', pt:'A França', pron:'a fran-sa',
+   example:'Vivo na França há cinco anos.', exampleFr:'Je vis en France depuis cinq ans.',
+   img:'🇫🇷'},
+  {id:'vp18', cat:'Vie perso', fr:'Le Portugal', pt:'Portugal', pron:'por-tou-gal',
+   example:'Portugal é lindo!', exampleFr:'Le Portugal est magnifique !',
+   img:'🇵🇹'},
+  {id:'vp19', cat:'Vie perso', fr:'Je suis content(e) d\'être là', pt:'Estou feliz de estar aqui', pron:'èch-tô feu-lich deu èch-tar a-ki',
+   example:'Estou feliz de estar aqui convosco.', exampleFr:'Je suis content d\'être là avec vous.',
+   img:'😊'},
+  {id:'vp20', cat:'Vie perso', fr:'C\'est dur d\'être loin de chez soi', pt:'É difícil estar longe de casa', pron:'é di-fi-sil èch-tar lon-jeu deu ka-za',
+   example:'É difícil estar longe da família.', exampleFr:'C\'est dur d\'être loin de la famille.',
+   img:'😔'},
+  {id:'vp21', cat:'Vie perso', fr:'Je m\'ennuie', pt:'Estou aborrecido/a', pron:'èch-tô a-bou-rreu-si-dou',
+   example:'Estou aborrecido, não tenho nada para fazer.', exampleFr:'Je m\'ennuie, j\'ai rien à faire.',
+   syn:'Estou entediado', img:'😑'},
+  {id:'vp22', cat:'Vie perso', fr:'J\'ai passé une bonne journée', pt:'Tive um bom dia', pron:'ti-veu oum bom di-a',
+   example:'Tive um bom dia, obrigada!', exampleFr:'J\'ai passé une bonne journée, merci !',
+   img:'😊'},
+
+  // ---- SORTIES ET PLANS ----
+  {id:'s1', cat:'Sorties & Plans', fr:'On se retrouve ?', pt:'Encontramo-nos?', pron:'ên-kon-tra-mou-nouch',
+   example:'Encontramo-nos às 8 no centro?', exampleFr:'On se retrouve à 8h au centre ?',
+   syn:'Vemo-nos?', img:'🤝'},
+  {id:'s2', cat:'Sorties & Plans', fr:'T\'es libre quand ?', pt:'Quando és livre?', pron:'kwan-dou èch li-vreu',
+   example:'Quando és livre para sair?', exampleFr:'T\'es libre quand pour sortir ?',
+   img:'📅'},
+  {id:'s3', cat:'Sorties & Plans', fr:'On fait quoi ?', pt:'O que fazemos?', pron:'ou keu fa-zé-mouch',
+   example:'O que fazemos esta noite?', exampleFr:'On fait quoi ce soir ?',
+   syn:'Que fazemos?', img:'🤔'},
+  {id:'s4', cat:'Sorties & Plans', fr:'Je viens te chercher', pt:'Vou buscar-te', pron:'vô bouch-kar-teu',
+   example:'Vou buscar-te às 7.', exampleFr:'Je viens te chercher à 7h.',
+   syn:'Passo por ti', img:'🚗'},
+  {id:'s5', cat:'Sorties & Plans', fr:'T\'arrives à quelle heure ?', pt:'A que horas chegas?', pron:'a keu ô-rach ché-gach',
+   example:'A que horas chegas ao restaurante?', exampleFr:'T\'arrives à quelle heure au restaurant ?',
+   img:'⏰'},
+  {id:'s6', cat:'Sorties & Plans', fr:'Je suis en route', pt:'Estou a caminho', pron:'èch-tô a ka-min-you',
+   example:'Estou a caminho, chego já.', exampleFr:'Je suis en route, j\'arrive tout de suite.',
+   syn:'Estou a ir', img:'🚶'},
+  {id:'s7', cat:'Sorties & Plans', fr:'J\'arrive dans 10 minutes', pt:'Chego em 10 minutos', pron:'ché-gou êm dèch mi-nou-touch',
+   example:'Chego em 10 minutos, espera aí.', exampleFr:'J\'arrive dans 10 minutes, attends là.',
+   img:'⏱️'},
+  {id:'s8', cat:'Sorties & Plans', fr:'On va manger ensemble ?', pt:'Vamos comer juntos?', pron:'va-mouch kou-mèr joun-touch',
+   example:'Vamos comer juntos ao meio-dia?', exampleFr:'On va manger ensemble à midi ?',
+   syn:'Comemos juntos?', img:'🍽️'},
+  {id:'s9', cat:'Sorties & Plans', fr:'C\'est loin d\'ici ?', pt:'É longe daqui?', pron:'é lon-jeu da-ki',
+   example:'O restaurante é longe daqui?', exampleFr:'Le restaurant est loin d\'ici ?',
+   img:'🗺️'},
+  {id:'s10', cat:'Sorties & Plans', fr:'Je suis en retard', pt:'Estou atrasado/a', pron:'èch-tô a-tra-za-dou',
+   example:'Desculpa, estou atrasado!', exampleFr:'Désolé, je suis en retard !',
+   syn:'Estou com atraso', img:'⏰'},
+  {id:'s11', cat:'Sorties & Plans', fr:'Je suis en avance', pt:'Estou adiantado/a', pron:'èch-tô a-dian-ta-dou',
+   example:'Estou adiantado, cheguei cedo.', exampleFr:'Je suis en avance, je suis arrivé tôt.',
+   img:'⏰'},
+  {id:'s12', cat:'Sorties & Plans', fr:'On annule ?', pt:'Cancelamos?', pron:'kan-seu-la-mouch',
+   example:'Cancelamos o jantar de hoje?', exampleFr:'On annule le dîner de ce soir ?',
+   syn:'Adiamos?', img:'❌'},
+  {id:'s13', cat:'Sorties & Plans', fr:'Ça marche !', pt:'Combinado!', pron:'kom-bi-na-dou',
+   example:'Combinado, vemo-nos amanhã!', exampleFr:'Ça marche, on se voit demain !',
+   syn:'Está bem, Fixe', img:'👍'},
+  {id:'s14', cat:'Sorties & Plans', fr:'Rendez-vous à…', pt:'Encontramo-nos em…', pron:'ên-kon-tra-mou-nouch êm',
+   example:'Encontramo-nos no café às 5.', exampleFr:'Rendez-vous au café à 5h.',
+   syn:'Vemo-nos em', img:'📍'},
+  {id:'s15', cat:'Sorties & Plans', fr:'Je t\'attends', pt:'Estou à tua espera', pron:'èch-tô a tou-a èch-pé-ra',
+   example:'Estou à tua espera no carro.', exampleFr:'Je t\'attends dans la voiture.',
+   syn:'Espero por ti', img:'⌛'},
+  {id:'s16', cat:'Sorties & Plans', fr:'C\'était une super soirée', pt:'Foi uma noite incrível', pron:'foï ou-ma noït in-kri-vel',
+   example:'Foi uma noite incrível, adorei!', exampleFr:'C\'était une super soirée, j\'ai adoré !',
+   syn:'Foi uma noite fantástica', img:'🎉'},
+  {id:'s17', cat:'Sorties & Plans', fr:'On remet ça bientôt ?', pt:'Repetimos em breve?', pron:'rrèu-peu-ti-mouch êm brèv',
+   example:'Repetimos em breve? Foi tão bom!', exampleFr:'On remet ça bientôt ? C\'était trop bien !',
+   syn:'Fazemos outra vez?', img:'🔄'},
+  {id:'s18', cat:'Sorties & Plans', fr:'Je me suis bien amusé(e)', pt:'Diverti-me muito', pron:'di-ver-ti-meu mwi-tou',
+   example:'Obrigado, diverti-me muito!', exampleFr:'Merci, je me suis bien amusé !',
+   img:'😄'},
+  {id:'s19', cat:'Sorties & Plans', fr:'C\'était la meilleure soirée', pt:'Foi a melhor noite', pron:'foï a meu-lyor noït',
+   example:'Foi a melhor noite da minha vida!', exampleFr:'C\'était la meilleure soirée de ma vie !',
+   img:'⭐'},
+  {id:'s20', cat:'Sorties & Plans', fr:'T\'es partant(e) ?', pt:'Topavas?', pron:'tou-pa-vach',
+   example:'Topavas ir ao cinema?', exampleFr:'T\'es partant pour aller au cinéma ?',
+   syn:'Estás a fim?', img:'👌'},
+
+  // ---- CORPS ET SANTÉ ----
+  {id:'cs1', cat:'Corps & Santé', fr:'J\'ai mal à la tête', pt:'Tenho dores de cabeça', pron:'tèn-you dô-rèch deu ka-bé-sa',
+   example:'Tenho dores de cabeça desde ontem.', exampleFr:'J\'ai mal à la tête depuis hier.',
+   syn:'A cabeça dói-me', img:'🤕'},
+  {id:'cs2', cat:'Corps & Santé', fr:'J\'ai mal au dos', pt:'Tenho dores nas costas', pron:'tèn-you dô-rèch nach kôch-tach',
+   example:'Tenho dores nas costas horríveis.', exampleFr:'J\'ai des douleurs terribles au dos.',
+   syn:'As costas doem-me', img:'😣'},
+  {id:'cs3', cat:'Corps & Santé', fr:'J\'ai mal aux pieds', pt:'Tenho dores nos pés', pron:'tèn-you dô-rèch nouch péch',
+   example:'Tenho dores nos pés de caminhar tanto.', exampleFr:'J\'ai mal aux pieds d\'avoir trop marché.',
+   img:'🦶'},
+  {id:'cs4', cat:'Corps & Santé', fr:'Je suis malade', pt:'Estou doente', pron:'èch-tô dou-ênt',
+   example:'Não posso ir, estou doente.', exampleFr:'Je peux pas venir, je suis malade.',
+   syn:'Estou mal', img:'🤒'},
+  {id:'cs5', cat:'Corps & Santé', fr:'J\'ai la grippe', pt:'Tenho gripe', pron:'tèn-you grip',
+   example:'Tenho gripe e febre.', exampleFr:'J\'ai la grippe et de la fièvre.',
+   syn:'Estou com gripe', img:'🤧',
+   example:'Tenho gripe e febre.', exampleFr:'J\'ai la grippe et de la fièvre.',
+   syn:'Estou com gripe', img:'🤧'},
+  {id:'cs6', cat:'Corps & Santé', fr:'J\'ai de la fièvre', pt:'Tenho febre', pron:'tèn-you fèbr',
+   example:'Tenho febre de 39 graus.', exampleFr:'J\'ai 39 de fièvre.',
+   syn:'Estou com febre', img:'🤒'},
+  {id:'cs7', cat:'Corps & Santé', fr:'Je me sens pas bien', pt:'Não me sinto bem', pron:'nawn meu sin-tou bèm',
+   example:'Não me sinto bem hoje.', exampleFr:'Je me sens pas bien aujourd\'hui.',
+   syn:'Sinto-me mal', img:'😞'},
+  {id:'cs8', cat:'Corps & Santé', fr:'Je suis épuisé(e)', pt:'Estou esgotado/a', pron:'èch-tô èch-gou-ta-dou',
+   example:'Estou esgotado, preciso dormir.', exampleFr:'Je suis épuisé, j\'ai besoin de dormir.',
+   syn:'Estou exausto', img:'😫'},
+  {id:'cs9', cat:'Corps & Santé', fr:'T\'es en forme ?', pt:'Estás bem?', pron:'èch-tach bèm',
+   example:'Estás bem? Pareces cansado.', exampleFr:'T\'es en forme ? Tu as l\'air fatigué.',
+   syn:'Estás bom?', img:'💪'},
+  {id:'cs10', cat:'Corps & Santé', fr:'Prends soin de toi', pt:'Cuida-te', pron:'kwi-da-teu',
+   example:'Cuida-te e descansa.', exampleFr:'Prends soin de toi et repose-toi.',
+   syn:'Trata de ti', img:'🤗'},
+  {id:'cs11', cat:'Corps & Santé', fr:'Repose-toi', pt:'Descansa', pron:'dèch-kan-sa',
+   example:'Descansa um pouco, precisas.', exampleFr:'Repose-toi un peu, t\'en as besoin.',
+   img:'😴'},
+  {id:'cs12', cat:'Corps & Santé', fr:'J\'ai les jambes lourdes', pt:'Tenho as pernas cansadas', pron:'tèn-you ach pèr-nach kan-sa-dach',
+   example:'Tenho as pernas cansadas de tanto andar.', exampleFr:'J\'ai les jambes lourdes d\'avoir trop marché.',
+   img:'🦵'},
+  {id:'cs13', cat:'Corps & Santé', fr:'Ça fait mal', pt:'Dói', pron:'dôï',
+   example:'Dói muito aqui.', exampleFr:'Ça fait très mal ici.',
+   syn:'Está a doer', img:'😖'},
+  {id:'cs14', cat:'Corps & Santé', fr:'Ça va mieux', pt:'Já estou melhor', pron:'ja èch-tô meu-lyor',
+   example:'Já estou melhor, obrigado.', exampleFr:'Ça va mieux, merci.',
+   img:'😌'},
+  {id:'cs15', cat:'Corps & Santé', fr:'Je suis guéri(e)', pt:'Já estou curado/a', pron:'ja èch-tô kou-ra-dou',
+   example:'Já estou curado da gripe.', exampleFr:'Je suis guéri de la grippe.',
+   syn:'Já estou bom', img:'✅'},
+  {id:'cs16', cat:'Corps & Santé', fr:'Fais attention à ta santé', pt:'Cuida da tua saúde', pron:'kwi-da da tou-a sa-ou-deu',
+   example:'Cuida da tua saúde, é importante.', exampleFr:'Fais attention à ta santé, c\'est important.',
+   syn:'Trata da tua saúde', img:'💚'},
+  {id:'cs17', cat:'Corps & Santé', fr:'J\'ai les yeux qui piquent', pt:'Os olhos estão a arder', pron:'ouch o-lyouch èch-tawn a ar-dèr',
+   example:'Os olhos estão a arder do computador.', exampleFr:'J\'ai les yeux qui piquent à cause de l\'ordinateur.',
+   syn:'Os olhos doem-me', img:'👁️'},
+  {id:'cs18', cat:'Corps & Santé', fr:'Je dois aller chez le médecin', pt:'Tenho de ir ao médico', pron:'tèn-you deu ir au mé-di-kou',
+   example:'Tenho de ir ao médico amanhã.', exampleFr:'Je dois aller chez le médecin demain.',
+   syn:'Preciso ir ao médico', img:'🏥'},
+
+  // ---- TÉLÉPHONE ET MESSAGES ----
+  {id:'tm1', cat:'Tel & Messages', fr:'Je t\'appelle', pt:'Ligo-te', pron:'li-gou-teu',
+   example:'Ligo-te mais tarde.', exampleFr:'Je t\'appelle plus tard.',
+   syn:'Telefono-te', img:'📞'},
+  {id:'tm2', cat:'Tel & Messages', fr:'Appelle-moi', pt:'Liga-me', pron:'li-ga-meu',
+   example:'Liga-me quando chegares.', exampleFr:'Appelle-moi quand tu arrives.',
+   syn:'Telefona-me', img:'📱'},
+  {id:'tm3', cat:'Tel & Messages', fr:'T\'as vu mon message ?', pt:'Viste a minha mensagem?', pron:'vich-teu a min-ya mên-sa-jèm',
+   example:'Viste a mensagem que te mandei?', exampleFr:'T\'as vu le message que je t\'ai envoyé ?',
+   syn:'Recebeste a minha mensagem?', img:'💬'},
+  {id:'tm4', cat:'Tel & Messages', fr:'Réponds-moi', pt:'Responde-me', pron:'rrèch-pond-meu',
+   example:'Responde-me quando puderes.', exampleFr:'Réponds-moi quand tu peux.',
+   img:'✍️'},
+  {id:'tm5', cat:'Tel & Messages', fr:'Je vais t\'envoyer un message', pt:'Mando-te mensagem', pron:'man-dou-teu mên-sa-jèm',
+   example:'Mando-te mensagem quando chegar.', exampleFr:'Je t\'envoie un message quand j\'arrive.',
+   syn:'Envio-te mensagem', img:'📩',
+   example:'Mando-te mensagem quando chegar.', exampleFr:'Je t\'envoie un message quand j\'arrive.',
+   syn:'Envio-te mensagem', img:'📩'},
+  {id:'tm6', cat:'Tel & Messages', fr:'T\'as mon numéro ?', pt:'Tens o meu número?', pron:'tênch ou méu nou-mé-rou',
+   example:'Tens o meu número de telemóvel?', exampleFr:'T\'as mon numéro de portable ?',
+   syn:'Tens o meu contacto?', img:'📞'},
+  {id:'tm7', cat:'Tel & Messages', fr:'Je peux pas parler là', pt:'Não posso falar agora', pron:'nawn pos-sou fa-lar a-gô-ra',
+   example:'Não posso falar agora, ligo depois.', exampleFr:'Je peux pas parler là, j\'appelle après.',
+   img:'🔇'},
+  {id:'tm8', cat:'Tel & Messages', fr:'Je te rappelle', pt:'Ligo-te já', pron:'li-gou-teu ja',
+   example:'Ligo-te já, está bem?', exampleFr:'Je te rappelle tout de suite, d\'acc ?',
+   syn:'Telefono-te já', img:'🔄'},
+  {id:'tm9', cat:'Tel & Messages', fr:'T\'as pas de réseau', pt:'Não tens rede', pron:'nawn tênch rred',
+   example:'Não tens rede no telemóvel?', exampleFr:'T\'as pas de réseau sur ton tél ?',
+   syn:'Não há rede', img:'📵'},
+  {id:'tm10', cat:'Tel & Messages', fr:'La batterie est morte', pt:'A bateria morreu', pron:'a ba-teu-ri-a mou-rréu',
+   example:'A bateria do telemóvel morreu.', exampleFr:'La batterie du téléphone est morte.',
+   syn:'A bateria acabou', img:'🔋'},
+  {id:'tm11', cat:'Tel & Messages', fr:'Envoie-moi ta localisation', pt:'Manda-me a tua localização', pron:'man-da-meu a tou-a lo-ka-li-za-sawn',
+   example:'Manda-me a tua localização, por favor.', exampleFr:'Envoie-moi ta localisation, s\'il te plaît.',
+   syn:'Envia-me a localização', img:'📍'},
+  {id:'tm12', cat:'Tel & Messages', fr:'J\'entends pas bien', pt:'Não estou a ouvir bem', pron:'nawn èch-tô a o-vir bèm',
+   example:'Não estou a ouvir bem, há eco.', exampleFr:'J\'entends pas bien, il y a de l\'écho.',
+   syn:'Não te oiço bem', img:'🔇'},
+  {id:'tm13', cat:'Tel & Messages', fr:'On se fait un appel vidéo ?', pt:'Fazemos videochamada?', pron:'fa-zé-mouch vi-dèu-cha-ma-da',
+   example:'Fazemos videochamada mais tarde?', exampleFr:'On se fait un appel vidéo plus tard ?',
+   syn:'Fazemos chamada de vídeo?', img:'📹'},
+  {id:'tm14', cat:'Tel & Messages', fr:'Je te mets une photo', pt:'Mando-te uma foto', pron:'man-dou-teu ou-ma fô-tou',
+   example:'Mando-te uma foto do sítio.', exampleFr:'Je te mets une photo de l\'endroit.',
+   syn:'Envio-te uma foto', img:'📸'},
+  {id:'tm15', cat:'Tel & Messages', fr:'T\'as regardé ce que je t\'ai envoyé ?', pt:'Viste o que te mandei?', pron:'vich-teu ou keu teu man-déï',
+   example:'Viste o link que te mandei?', exampleFr:'T\'as regardé le lien que je t\'ai envoyé ?',
+   syn:'Recebeste o que enviei?', img:'👀'},
+
+  // ---- EXPRESSIONS PORTUGAISES ----
+  {id:'x1', cat:'Expressions PT', fr:'La saudade (nostalgie mélancolique)', pt:'Saudade', pron:'sau-dad', note:'Mot intraduisible — une nostalgie douce-amère',
+   example:'Tenho saudades de Portugal.', exampleFr:'Le Portugal me manque.',
+   img:'💔'},
+  {id:'x2', cat:'Expressions PT', fr:'Bien sûr', pt:'Com certeza', pron:'kom ser-té-za',
+   example:'Com certeza, conto contigo!', exampleFr:'Bien sûr, je compte sur toi !',
+   syn:'Certamente, Como não', img:'✅'},
+  {id:'x3', cat:'Expressions PT', fr:'Évidemment', pt:'Claro', pron:'kla-rou',
+   example:'Claro que sim!', exampleFr:'Évidemment que oui !',
+   syn:'Obviamente', img:'👌'},
+  {id:'x4', cat:'Expressions PT', fr:'Exactement', pt:'Exactamente', pron:'è-za-ta-mênt',
+   example:'Exactamente! É isso mesmo.', exampleFr:'Exactement ! C\'est exactement ça.',
+   syn:'Precisamente, Isso mesmo', img:'🎯'},
+  {id:'x5', cat:'Expressions PT', fr:'Peut-être', pt:'Talvez', pron:'tal-vèch',
+   example:'Talvez vá ao cinema amanhã.', exampleFr:'Peut-être que j\'irai au cinéma demain.',
+   syn:'Pode ser', img:'🤷',
+   example:'Talvez vá ao cinema amanhã.', exampleFr:'Peut-être que j\'irai au cinéma demain.',
+   syn:'Pode ser', img:'🤷'},
+  {id:'x6', cat:'Expressions PT', fr:'Peut-être pas', pt:'Talvez não', pron:'tal-vèch nawn',
+   example:'Talvez não, ainda não sei.', exampleFr:'Peut-être pas, je sais pas encore.',
+   syn:'Pode ser que não', img:'🤷'},
+  {id:'x7', cat:'Expressions PT', fr:'Qui sait ?', pt:'Quem sabe?', pron:'kèm sab',
+   example:'Quem sabe? Vamos ver!', exampleFr:'Qui sait ? On verra !',
+   img:'🤔'},
+  {id:'x8', cat:'Expressions PT', fr:'On verra', pt:'Vamos ver', pron:'va-mouch vèr',
+   example:'Vamos ver como corre.', exampleFr:'On verra comment ça se passe.',
+   syn:'Logo se vê', img:'👀'},
+  {id:'x9', cat:'Expressions PT', fr:'D\'accord', pt:'Está bem', pron:'èch-ta bèm',
+   example:'Está bem, faço isso.', exampleFr:'D\'accord, je fais ça.',
+   syn:'Ok, Sim', img:'👍'},
+  {id:'x10', cat:'Expressions PT', fr:'Tout va bien', pt:'Tudo bem', pron:'tou-dou bèm',
+   example:'Tudo bem contigo?', exampleFr:'Tout va bien pour toi ?',
+   syn:'Tudo óptimo', img:'✅'},
+  {id:'x11', cat:'Expressions PT', fr:'Tout est bon / OK', pt:'Tudo certo', pron:'tou-dou ser-tou',
+   example:'Tudo certo para amanhã?', exampleFr:'Tout est bon pour demain ?',
+   syn:'Tudo ok, Está tudo bem', img:'✔️'},
+  {id:'x12', cat:'Expressions PT', fr:'Courage / Allez !', pt:'Força!', pron:'for-sa',
+   example:'Força! Tu consegues!', exampleFr:'Courage ! Tu peux le faire !',
+   syn:'Vai lá, Coragem', img:'💪'},
+  {id:'x13', cat:'Expressions PT', fr:'Courage (plus soutenu)', pt:'Coragem!', pron:'kou-ra-jèm',
+   example:'Coragem, vai correr tudo bem.', exampleFr:'Courage, tout va bien se passer.',
+   syn:'Força, Ânimo', img:'🤝'},
+  {id:'x14', cat:'Expressions PT', fr:'Ça va bien se passer', pt:'Vai correr bem', pron:'vaï kou-rrèr bèm',
+   example:'Vai correr tudo bem, não te preocupes.', exampleFr:'Ça va bien se passer, t\'inquiète pas.',
+   syn:'Vai dar tudo certo', img:'✨'},
+  {id:'x15', cat:'Expressions PT', fr:'T\'inquiète pas (formel)', pt:'Não te preocupes', pron:'nawn teu prèu-kou-pèch',
+   example:'Não te preocupes, eu cuido disso.', exampleFr:'T\'inquiète pas, je m\'en occupe.',
+   syn:'Não te preocupa', img:'😌',
+   example:'Não te preocupes, eu cuido disso.', exampleFr:'T\'inquiète pas, je m\'en occupe.',
+   syn:'Não te preocupa', img:'😌'},
+  {id:'x16', cat:'Expressions PT', fr:'Laisse tomber / C\'est bon', pt:'Deixa estar', pron:'daï-cha èch-tar',
+   example:'Deixa estar, não faz mal.', exampleFr:'Laisse tomber, c\'est pas grave.',
+   syn:'Deixa lá, Esquece', img:'🤷'},
+  {id:'x17', cat:'Expressions PT', fr:'C\'est fait / Voilà', pt:'Já está', pron:'ja èch-ta',
+   example:'Já está, terminei!', exampleFr:'C\'est fait, j\'ai terminé !',
+   syn:'Pronto, Está feito', img:'✔️'},
+  {id:'x18', cat:'Expressions PT', fr:'Voilà / C\'est bon', pt:'Pronto', pron:'pron-tou',
+   example:'Pronto, já está tudo.', exampleFr:'Voilà, tout est prêt.',
+   syn:'Já está, Feito', img:'❤️'},
+  {id:'x19', cat:'Expressions PT', fr:'Oh là là / Waouh !', pt:'Ena!', pron:'é-na',
+   example:'Ena! Que surpresa!', exampleFr:'Oh là là ! Quelle surprise !',
+   syn:'Uau', img:'😲'},
+  {id:'x20', cat:'Expressions PT', fr:'Mince ! Zut !', pt:'Caramba!', pron:'ka-ram-ba',
+   example:'Caramba! Esqueci-me das chaves.', exampleFr:'Mince ! J\'ai oublié les clés.',
+   syn:'Raios', img:'😬'},
+  {id:'x21', cat:'Expressions PT', fr:'Allez ! Vas-y !', pt:'Anda lá!', pron:'an-da la',
+   example:'Anda lá, não sejas tímido!', exampleFr:'Allez ! Sois pas timide !',
+   syn:'Vai lá', img:'👏'},
+  {id:'x22', cat:'Expressions PT', fr:'Tiens / Regarde', pt:'Olha', pron:'ô-lya',
+   example:'Olha o que encontrei!', exampleFr:'Regarde ce que j\'ai trouvé !',
+   syn:'Vê', img:'👀'},
+  {id:'x23', cat:'Expressions PT', fr:'Tu vois ? / T\'as vu ?', pt:'Viste?', pron:'vich-teu',
+   example:'Viste como ele reagiu?', exampleFr:'T\'as vu comment il a réagi ?',
+   syn:'Vês?', img:'👁️'},
+  {id:'x24', cat:'Expressions PT', fr:'Tu comprends ?', pt:'Percebes?', pron:'per-sé-bèch',
+   example:'Percebes o que quero dizer?', exampleFr:'Tu comprends ce que je veux dire ?',
+   syn:'Entendes?, Compreendes?', img:'🤔'},
+  {id:'x25', cat:'Expressions PT', fr:'Tu sais ?', pt:'Sabes?', pron:'sa-bèch',
+   example:'Sabes onde fica isto?', exampleFr:'Tu sais où c\'est ?',
+   syn:'Conheces?', img:'❓'},
+  {id:'x26', cat:'Expressions PT', fr:'Oh mince (plus fort)', pt:'Caraças!', pron:'ka-ra-sach',
+   example:'Caraças! Que susto!', exampleFr:'Oh mince ! Quelle peur !',
+   syn:'Caramba', img:'😱'},
+  {id:'x27', cat:'Expressions PT', fr:'C\'est super / Génial', pt:'Que fixe!', pron:'keu fich',
+   example:'Que fixe! Adoro essa ideia!', exampleFr:'C\'est super ! J\'adore cette idée !',
+   syn:'Que giro, Que bom', img:'⭐'},
+  {id:'x28', cat:'Expressions PT', fr:'Super / Top (langage jeune)', pt:'Fixes!', pron:'fi-chèch',
+   example:'Fixes! Vamos já!', exampleFr:'Top ! On y va tout de suite !',
+   syn:'Fixe, Espetacular', img:'🔥'},
+];
+
+// ============================================================
+// STATE
+// ============================================================
+let allCards = [...VOCAB];
+let filteredCards = [...VOCAB];
+let currentDeck = [...filteredCards];
+let currentIndex = 0;
+let isFlipped = false;
+let isShuffle = false;
+let isQuizMode = false;
+let isSpacedRepetition = false;
+let currentCat = 'Tous';
+let selectedCats = new Set(['Tous']); // Pour filtre multiple
+let reviewFilter = 'known';
+let searchQuery = '';
+let allCategories = []; // Liste de toutes les catégories
+
+// Load scores from localStorage
+let scores = JSON.parse(localStorage.getItem('pt_scores') || '{}');
+let customWords = JSON.parse(localStorage.getItem('pt_custom') || '[]');
+
+// SRS Data structure: {wordId: {level: 0-4, nextReview: timestamp, lastReview: timestamp}}
+// Niveaux: 0=nouveau, 1=1j, 2=3j, 3=7j, 4=15j, 5=30j+
+let srsData = JSON.parse(localStorage.getItem('pt_srs') || '{}');
+
+function saveScores() { localStorage.setItem('pt_scores', JSON.stringify(scores)); }
+function saveCustom() { localStorage.setItem('pt_custom', JSON.stringify(customWords)); }
+function saveSRS() { localStorage.setItem('pt_srs', JSON.stringify(srsData)); }
+
+// SRS Intervals en millisecondes
+const SRS_INTERVALS = [
+  0,                    // Level 0: nouveau (révision immédiate)
+  24 * 60 * 60 * 1000,  // Level 1: 1 jour
+  3 * 24 * 60 * 60 * 1000,  // Level 2: 3 jours
+  7 * 24 * 60 * 60 * 1000,  // Level 3: 7 jours
+  15 * 24 * 60 * 60 * 1000, // Level 4: 15 jours
+  30 * 24 * 60 * 60 * 1000  // Level 5: 30 jours
+];
+
+// Initialiser les données SRS pour un mot si nécessaire
+function initSRS(wordId) {
+  if (!srsData[wordId]) {
+    srsData[wordId] = {
+      level: 0,
+      nextReview: Date.now(),
+      lastReview: null
+    };
+  }
+}
+
+// Mettre à jour le niveau SRS après une réponse
+function updateSRS(wordId, correct) {
+  initSRS(wordId);
+  const data = srsData[wordId];
+  const now = Date.now();
+  
+  if (correct) {
+    // Bonne réponse : monter de niveau (max 5)
+    data.level = Math.min(5, data.level + 1);
+  } else {
+    // Mauvaise réponse : retour au début
+    data.level = 0;
+  }
+  
+  // Calculer la prochaine révision
+  data.lastReview = now;
+  data.nextReview = now + SRS_INTERVALS[data.level];
+  
+  saveSRS();
+}
+
+// Savoir si un mot doit être révisé
+function shouldReview(wordId) {
+  initSRS(wordId);
+  return srsData[wordId].nextReview <= Date.now();
+}
+
+// ============================================================
+// CATEGORIES avec sélection multiple
+// ============================================================
+function buildCategories() {
+  allCategories = ['Tous', ...new Set(VOCAB.map(v => v.cat))];
+  const scroll = document.getElementById('cat-scroll');
+  scroll.innerHTML = '';
+  allCategories.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'cat-btn' + (selectedCats.has(cat) ? ' active' : '');
+    btn.textContent = cat;
+    btn.onclick = (e) => toggleCat(cat, e.currentTarget);
+    scroll.appendChild(btn);
+  });
+  updateCategoryNavButtons();
+}
+
+function toggleCat(cat, btn) {
+  if (cat === 'Tous') {
+    // Si on clique sur "Tous", on désélectionne tout et on sélectionne Tous
+    selectedCats.clear();
+    selectedCats.add('Tous');
+  } else {
+    // Enlever "Tous" si on sélectionne une catégorie spécifique
+    selectedCats.delete('Tous');
+    
+    if (selectedCats.has(cat)) {
+      selectedCats.delete(cat);
+      // Si on a tout décoché, remettre "Tous"
+      if (selectedCats.size === 0) {
+        selectedCats.add('Tous');
+      }
+    } else {
+      selectedCats.add(cat);
+    }
+  }
+  
+  buildCategories(); // Rebuild pour mettre à jour les visuels
+  applyFilter();
+}
+
+// ============================================================
+// CATEGORY NAVIGATION avec flèches
+// ============================================================
+function scrollToCategoryButton(categoryName) {
+  const scroll = document.getElementById('cat-scroll');
+  if (!scroll) return;
+  
+  // Trouver le bouton de la catégorie
+  const buttons = scroll.querySelectorAll('.cat-btn');
+  let targetButton = null;
+  
+  buttons.forEach(btn => {
+    if (btn.textContent === categoryName) {
+      targetButton = btn;
+    }
+  });
+  
+  if (targetButton) {
+    // Calculer la position pour centrer le bouton dans la zone visible
+    const scrollContainer = scroll;
+    const buttonLeft = targetButton.offsetLeft;
+    const buttonWidth = targetButton.offsetWidth;
+    const containerWidth = scrollContainer.offsetWidth;
+    
+    // Centrer le bouton
+    const scrollPosition = buttonLeft - (containerWidth / 2) + (buttonWidth / 2);
+    
+    scrollContainer.scrollTo({
+      left: scrollPosition,
+      behavior: 'smooth'
+    });
+  }
+}
+
+function previousCategory() {
+  if (!allCategories.length) return;
+  
+  // Si on a plusieurs catégories sélectionnées, prendre juste la première active
+  const firstActive = Array.from(selectedCats)[0];
+  const currentIdx = allCategories.indexOf(firstActive);
+  
+  if (currentIdx > 0) {
+    const prevCat = allCategories[currentIdx - 1];
+    selectedCats.clear();
+    selectedCats.add(prevCat);
+    buildCategories();
+    applyFilter();
+    scrollToCategoryButton(prevCat);
+    showToast(`📂 ${prevCat}`);
+  }
+}
+
+function nextCategory() {
+  if (!allCategories.length) return;
+  
+  // Si on a plusieurs catégories sélectionnées, prendre juste la première active
+  const firstActive = Array.from(selectedCats)[0];
+  const currentIdx = allCategories.indexOf(firstActive);
+  
+  if (currentIdx < allCategories.length - 1) {
+    const nextCat = allCategories[currentIdx + 1];
+    selectedCats.clear();
+    selectedCats.add(nextCat);
+    buildCategories();
+    applyFilter();
+    scrollToCategoryButton(nextCat);
+    showToast(`📂 ${nextCat}`);
+  }
+}
+
+function updateCategoryNavButtons() {
+  const prevBtn = document.getElementById('cat-prev-btn');
+  const nextBtn = document.getElementById('cat-next-btn');
+  
+  if (!prevBtn || !nextBtn || !allCategories.length) return;
+  
+  const firstActive = Array.from(selectedCats)[0];
+  const currentIdx = allCategories.indexOf(firstActive);
+  
+  prevBtn.disabled = currentIdx <= 0;
+  nextBtn.disabled = currentIdx >= allCategories.length - 1;
+}
+
+// ============================================================
+// QUICK RESET
+// ============================================================
+function quickResetScores() {
+  if (!confirm('⚠️ Remettre tous les scores à zéro ?\n\nTu perdras toutes tes progressions (mots connus/à revoir).')) return;
+  
+  scores = {};
+  saveScores();
+  updateProgress();
+  updateVisualStats();
+  renderCard(false);
+  showToast('🔄 Tous les scores ont été remis à zéro');
+}
+
+function applyFilter() {
+  const base = [...VOCAB, ...customWords];
+  
+  // Filtre par catégorie
+  let catFiltered;
+  if (selectedCats.has('Tous')) {
+    catFiltered = [...base];
+  } else {
+    catFiltered = base.filter(c => selectedCats.has(c.cat));
+  }
+  
+  // Filtre par recherche
+  if (searchQuery.trim()) {
+    const q = searchQuery.toLowerCase();
+    filteredCards = catFiltered.filter(c => 
+      c.fr.toLowerCase().includes(q) || 
+      c.pt.toLowerCase().includes(q) ||
+      (c.pron && c.pron.toLowerCase().includes(q))
+    );
+  } else {
+    filteredCards = catFiltered;
+  }
+  
+  // Filtre par répétition espacée (SRS)
+  if (isSpacedRepetition) {
+    // Filtrer pour ne garder que les mots à réviser aujourd'hui
+    const toReview = filteredCards.filter(c => shouldReview(c.id));
+    
+    if (toReview.length === 0) {
+      showToast('✨ Aucun mot à réviser aujourd\'hui ! Bien joué !');
+      // Montrer tous les mots si rien à réviser
+      currentDeck = isShuffle ? shuffle([...filteredCards]) : [...filteredCards];
+    } else {
+      currentDeck = isShuffle ? shuffle(toReview) : toReview;
+      showToast(`🔁 ${toReview.length} mot(s) à réviser aujourd'hui`);
+    }
+  } else {
+    currentDeck = isShuffle ? shuffle([...filteredCards]) : [...filteredCards];
+  }
+  
+  currentIndex = 0;
+  renderCard(false);
+  updateProgress();
+}
+
+// ============================================================
+// SEARCH
+// ============================================================
+document.addEventListener('DOMContentLoaded', () => {
+  const searchInput = document.getElementById('search-input');
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value;
+      applyFilter();
+      if (searchQuery.trim()) {
+        showToast(`🔍 ${filteredCards.length} résultat(s)`);
+      }
+    });
+  }
+});
+
+// ============================================================
+// CARD RENDERING
+// ============================================================
+function renderCard(animate = true) {
+  if (currentDeck.length === 0) {
+    document.getElementById('card-front').querySelector('.card-word').textContent = 'Aucune carte';
+    document.getElementById('card-counter').textContent = '0 / 0';
+    return;
+  }
+
+  // Reset flip
+  if (isFlipped) {
+    document.getElementById('card').classList.remove('flipped');
+    isFlipped = false;
+  }
+
+  // Animation
+  const cardEl = document.getElementById('card');
+  if (animate) {
+    cardEl.classList.remove('slide-in');
+    setTimeout(() => cardEl.classList.add('slide-in'), 10);
+  }
+
+  const card = currentDeck[currentIndex];
+
+  // Front
+  document.getElementById('cf-icon').textContent = card.img || '';
+  document.getElementById('cf-category').textContent = card.cat;
+  document.getElementById('cf-word').textContent = card.fr;
+
+  // Known badge
+  const badge = document.getElementById('known-badge');
+  badge.style.display = scores[card.id] === true ? 'flex' : 'none';
+
+  // Back
+  document.getElementById('cb-icon').textContent = card.img || '';
+  document.getElementById('cb-category').textContent = card.cat;
+  document.getElementById('cb-word').textContent = card.pt;
+  
+  // Prononciation
+  document.getElementById('cb-pron').textContent = card.pron ? `( ${card.pron} )` : '';
+  
+  // Synonymes
+  const synEl = document.getElementById('cb-syn');
+  if (card.syn || card.ant) {
+    let synText = '';
+    if (card.syn) synText += `Syn: ${card.syn}`;
+    if (card.ant) synText += (synText ? ' · ' : '') + `Ant: ${card.ant}`;
+    synEl.textContent = synText;
+    synEl.style.display = 'block';
+  } else {
+    synEl.style.display = 'none';
+  }
+  
+  // Exemple
+  const exEl = document.getElementById('cb-example');
+  if (card.example) {
+    exEl.innerHTML = `<div style="color:#a8e6c5">${card.example}</div>${card.exampleFr ? `<div style="color:rgba(168,230,197,0.4); margin-top:4px;">${card.exampleFr}</div>` : ''}`;
+    exEl.style.display = 'block';
+  } else {
+    exEl.style.display = 'none';
+  }
+
+  // Quiz mode: masquer le mot PT au dos au début
+  if (isQuizMode && !isFlipped) {
+    document.getElementById('cb-word').classList.add('card-word-hidden');
+  } else {
+    document.getElementById('cb-word').classList.remove('card-word-hidden');
+  }
+
+  // Counter
+  document.getElementById('card-counter').textContent =
+    `Carte ${currentIndex + 1} / ${currentDeck.length}`;
+
+  // Prev button state
+  const prevBtn = document.getElementById('btn-prev');
+  if (prevBtn) prevBtn.disabled = currentIndex === 0;
+}
+
+function flipCard() {
+  isFlipped = !isFlipped;
+  document.getElementById('card').classList.toggle('flipped', isFlipped);
+  
+  // En mode quiz, révéler le mot quand on retourne
+  if (isQuizMode && isFlipped) {
+    document.getElementById('cb-word').classList.remove('card-word-hidden');
+  }
+}
+
+function nextCard() {
+  currentIndex = (currentIndex + 1) % currentDeck.length;
+  renderCard(true);
+  
+  // Régénérer les options QCM si le mode est actif
+  if (isQCMMode) {
+    generateQCMOptions();
+  }
+  
+  // Réinitialiser le champ d'écriture
+  if (isWritingMode) {
+    document.getElementById('writing-input').value = '';
+    document.getElementById('writing-feedback').textContent = '';
+    document.getElementById('writing-feedback').className = 'writing-feedback';
+  }
+}
+
+function prevCard() {
+  if (currentIndex === 0) return;
+  currentIndex = currentIndex - 1;
+  renderCard(true);
+  
+  // Régénérer les options QCM si le mode est actif
+  if (isQCMMode) {
+    generateQCMOptions();
+  }
+  
+  // Réinitialiser le champ d'écriture
+  if (isWritingMode) {
+    document.getElementById('writing-input').value = '';
+    document.getElementById('writing-feedback').textContent = '';
+    document.getElementById('writing-feedback').className = 'writing-feedback';
+  }
+}
+
+function markCard(known) {
+  if (currentDeck.length === 0) return;
+  const card = currentDeck[currentIndex];
+  scores[card.id] = known;
+  saveScores();
+  
+  // Mettre à jour le SRS si la répétition espacée est active
+  if (isSpacedRepetition) {
+    updateSRS(card.id, known);
+    const level = srsData[card.id].level;
+    const nextDays = [0, 1, 3, 7, 15, 30][level];
+    if (known && nextDays > 0) {
+      showToast(`✓ Prochaine révision dans ${nextDays} jour${nextDays > 1 ? 's' : ''}`);
+    } else if (!known) {
+      showToast('↺ À revoir demain');
+    }
+  } else {
+    showToast(known ? '✓ Super, tu le sais !' : '↺ On va retravailler ça');
+  }
+  
+  updateProgress();
+  updateVisualStats();
+
+  // Update badge
+  const badge = document.getElementById('known-badge');
+  badge.style.display = known ? 'flex' : 'none';
+
+  // Auto-next after short delay
+  setTimeout(() => nextCard(), 500);
+}
+
+// ============================================================
+// PROGRESS
+// ============================================================
+function updateProgress() {
+  const base = [...VOCAB, ...customWords];
+  const total = base.length;
+  const known = base.filter(c => scores[c.id] === true).length;
+  const unknown = base.filter(c => scores[c.id] === false).length;
+
+  document.getElementById('progress-text').textContent = `${known} / ${total}`;
+  document.getElementById('progress-fill').style.width = total > 0 ? `${(known/total*100).toFixed(1)}%` : '0%';
+  document.getElementById('stat-known').textContent = known;
+  document.getElementById('stat-unknown').textContent = unknown;
+  document.getElementById('stat-total').textContent = total;
+}
+
+// ============================================================
+// VISUAL STATS
+// ============================================================
+function updateVisualStats() {
+  const base = [...VOCAB, ...customWords];
+  const total = base.length;
+  const known = base.filter(c => scores[c.id] === true).length;
+  const unknown = base.filter(c => scores[c.id] === false).length;
+  const tested = known + unknown;
+  
+  const knownPct = total > 0 ? (known / total * 100).toFixed(0) : 0;
+  const unknownPct = total > 0 ? (unknown / total * 100).toFixed(0) : 0;
+  const successPct = tested > 0 ? (known / tested * 100).toFixed(0) : 0;
+  
+  document.getElementById('vs-known-pct').textContent = `${knownPct}%`;
+  document.getElementById('vs-known-bar').style.width = `${knownPct}%`;
+  document.getElementById('vs-known-num').textContent = known;
+  
+  document.getElementById('vs-unknown-pct').textContent = `${unknownPct}%`;
+  document.getElementById('vs-unknown-bar').style.width = `${unknownPct}%`;
+  document.getElementById('vs-unknown-num').textContent = unknown;
+  
+  document.getElementById('vs-success-pct').textContent = `${successPct}%`;
+  document.getElementById('vs-success-bar').style.width = `${successPct}%`;
+}
+
+// ============================================================
+// SHUFFLE
+// ============================================================
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function toggleShuffle() {
+  isShuffle = !isShuffle;
+  document.getElementById('shuffle-btn').classList.toggle('active', isShuffle);
+  applyFilter();
+  showToast(isShuffle ? '🔀 Mode aléatoire activé' : '📋 Ordre normal');
+}
+
+// ============================================================
+// QUIZ MODE
+// ============================================================
+function toggleQuizMode() {
+  // Désactiver les autres modes (sans toggle pour éviter les appels multiples)
+  if (isWritingMode) {
+    isWritingMode = false;
+    document.getElementById('writing-btn').classList.remove('active');
+    document.getElementById('writing-indicator').style.display = 'none';
+    document.getElementById('writing-input-container').style.display = 'none';
+  }
+  if (isQCMMode) {
+    isQCMMode = false;
+    document.getElementById('qcm-btn').classList.remove('active');
+    document.getElementById('qcm-indicator').style.display = 'none';
+    document.getElementById('qcm-options-container').style.display = 'none';
+  }
+  
+  isQuizMode = !isQuizMode;
+  document.getElementById('quiz-btn').classList.toggle('active', isQuizMode);
+  document.getElementById('quiz-indicator').style.display = isQuizMode ? 'block' : 'none';
+  renderCard(false);
+  showToast(isQuizMode ? '🎯 Mode Quiz activé' : '📖 Mode Cartes normal');
+}
+
+// ============================================================
+// WRITING MODE
+// ============================================================
+let isWritingMode = false;
+let currentWritingAnswer = '';
+
+function toggleWritingMode() {
+  // Désactiver les autres modes (sans toggle pour éviter les appels multiples)
+  if (isQuizMode) {
+    isQuizMode = false;
+    document.getElementById('quiz-btn').classList.remove('active');
+    document.getElementById('quiz-indicator').style.display = 'none';
+  }
+  if (isQCMMode) {
+    isQCMMode = false;
+    document.getElementById('qcm-btn').classList.remove('active');
+    document.getElementById('qcm-indicator').style.display = 'none';
+    document.getElementById('qcm-options-container').style.display = 'none';
+  }
+  
+  isWritingMode = !isWritingMode;
+  document.getElementById('writing-btn').classList.toggle('active', isWritingMode);
+  document.getElementById('writing-indicator').style.display = isWritingMode ? 'block' : 'none';
+  document.getElementById('writing-input-container').style.display = isWritingMode ? 'flex' : 'none';
+  
+  if (isWritingMode) {
+    document.getElementById('writing-input').value = '';
+    document.getElementById('writing-feedback').textContent = '';
+    document.getElementById('writing-feedback').className = 'writing-feedback';
+    currentWritingAnswer = '';
+  }
+  
+  renderCard(false);
+  showToast(isWritingMode ? '✍️ Mode Écriture activé' : '📖 Mode Cartes normal');
+}
+
+// Fonction pour normaliser les accents (tolérance)
+function normalizeAccents(str) {
+  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+}
+
+function checkWritingAnswer() {
+  const userInput = document.getElementById('writing-input').value;
+  const feedback = document.getElementById('writing-feedback');
+  
+  if (!userInput.trim()) {
+    feedback.textContent = '⚠️ Tape d\'abord ta réponse !';
+    feedback.className = 'writing-feedback incorrect';
+    return;
+  }
+  
+  const currentCard = currentDeck[currentIndex];
+  const correctAnswer = currentCard.pt;
+  
+  // Normalisation pour ignorer les accents et la casse
+  const userNormalized = normalizeAccents(userInput);
+  const correctNormalized = normalizeAccents(correctAnswer);
+  
+  if (userNormalized === correctNormalized) {
+    feedback.textContent = `✓ Correct ! "${correctAnswer}"`;
+    feedback.className = 'writing-feedback correct';
+    markCard(true);
+    setTimeout(() => {
+      document.getElementById('writing-input').value = '';
+      feedback.textContent = '';
+      feedback.className = 'writing-feedback';
+      nextCard();
+    }, 1500);
+  } else {
+    feedback.textContent = `✗ Incorrect. La bonne réponse : "${correctAnswer}"`;
+    feedback.className = 'writing-feedback incorrect';
+    markCard(false);
+    setTimeout(() => {
+      document.getElementById('writing-input').value = '';
+      feedback.textContent = '';
+      feedback.className = 'writing-feedback';
+    }, 2500);
+  }
+}
+
+// ============================================================
+// QCM MODE
+// ============================================================
+let isQCMMode = false;
+let qcmCorrectIndex = -1;
+
+function toggleQCMMode() {
+  // Désactiver les autres modes (sans toggle pour éviter les appels multiples)
+  if (isQuizMode) {
+    isQuizMode = false;
+    document.getElementById('quiz-btn').classList.remove('active');
+    document.getElementById('quiz-indicator').style.display = 'none';
+  }
+  if (isWritingMode) {
+    isWritingMode = false;
+    document.getElementById('writing-btn').classList.remove('active');
+    document.getElementById('writing-indicator').style.display = 'none';
+    document.getElementById('writing-input-container').style.display = 'none';
+  }
+  
+  isQCMMode = !isQCMMode;
+  document.getElementById('qcm-btn').classList.toggle('active', isQCMMode);
+  document.getElementById('qcm-indicator').style.display = isQCMMode ? 'block' : 'none';
+  document.getElementById('qcm-options-container').style.display = isQCMMode ? 'flex' : 'none';
+  
+  if (isQCMMode) {
+    generateQCMOptions();
+  }
+  
+  renderCard(false);
+  showToast(isQCMMode ? '📝 Mode QCM activé' : '📖 Mode Cartes normal');
+}
+
+function generateQCMOptions() {
+  const currentCard = currentDeck[currentIndex];
+  if (!currentCard) return;
+  
+  // Créer un tableau de 4 options
+  const options = [currentCard.pt];
+  qcmCorrectIndex = 0;
+  
+  // Ajouter 3 réponses incorrectes aléatoires
+  const otherCards = currentDeck.filter(c => c.id !== currentCard.id);
+  const shuffled = otherCards.sort(() => Math.random() - 0.5);
+  
+  for (let i = 0; i < 3 && i < shuffled.length; i++) {
+    options.push(shuffled[i].pt);
+  }
+  
+  // Mélanger les options
+  for (let i = options.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [options[i], options[j]] = [options[j], options[i]];
+    if (i === qcmCorrectIndex) qcmCorrectIndex = j;
+    else if (j === qcmCorrectIndex) qcmCorrectIndex = i;
+  }
+  
+  // Afficher les options
+  for (let i = 0; i < 4; i++) {
+    const btn = document.getElementById(`qcm-opt-${i}`);
+    if (i < options.length) {
+      btn.textContent = options[i];
+      btn.disabled = false;
+      btn.style.display = 'block';
+    } else {
+      btn.textContent = '—';
+      btn.disabled = true;
+      btn.style.display = 'none';
+    }
+    btn.className = 'qcm-option';
+  }
+}
+
+function checkQCMAnswer(selectedIndex) {
+  const buttons = Array.from(document.querySelectorAll('.qcm-option'));
+  
+  // Désactiver tous les boutons
+  buttons.forEach(btn => btn.disabled = true);
+  
+  if (selectedIndex === qcmCorrectIndex) {
+    buttons[selectedIndex].classList.add('correct');
+    markCard(true);
+    showToast('✓ Correct !');
+    setTimeout(() => {
+      nextCard();
+      if (isQCMMode) generateQCMOptions();
+    }, 1000);
+  } else {
+    buttons[selectedIndex].classList.add('incorrect');
+    buttons[qcmCorrectIndex].classList.add('correct');
+    markCard(false);
+    showToast('✗ Incorrect');
+    setTimeout(() => {
+      buttons.forEach(btn => btn.className = 'qcm-option');
+      buttons.forEach(btn => btn.disabled = false);
+    }, 1500);
+  }
+}
+
+// ============================================================
+// SPACED REPETITION
+// ============================================================
+function toggleSpacedRepetition() {
+  isSpacedRepetition = !isSpacedRepetition;
+  document.getElementById('spaced-btn').classList.toggle('active', isSpacedRepetition);
+  applyFilter();
+  showToast(isSpacedRepetition ? '🔁 Répétition espacée activée' : '📋 Ordre normal');
+}
+
+// ============================================================
+// KEYBOARD SHORTCUTS
+// ============================================================
+document.addEventListener('keydown', (e) => {
+  // Mode écriture : Enter pour valider
+  if (e.key === 'Enter' && isWritingMode && document.activeElement.id === 'writing-input') {
+    e.preventDefault();
+    checkWritingAnswer();
+    return;
+  }
+  
+  // Éviter d'intercepter si on est dans un input
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+  
+  // Navigation entre catégories avec Alt + Flèches
+  if (e.altKey && e.key === 'ArrowLeft') {
+    e.preventDefault();
+    previousCategory();
+    return;
+  }
+  if (e.altKey && e.key === 'ArrowRight') {
+    e.preventDefault();
+    nextCategory();
+    return;
+  }
+  
+  switch(e.key) {
+    case ' ':
+    case 'Enter':
+      e.preventDefault();
+      flipCard();
+      break;
+    case 'ArrowRight':
+      e.preventDefault();
+      nextCard();
+      break;
+    case 'ArrowLeft':
+      e.preventDefault();
+      prevCard();
+      break;
+    case 'k':
+    case 'K':
+      e.preventDefault();
+      markCard(true);
+      break;
+    case 'd':
+    case 'D':
+      e.preventDefault();
+      markCard(false);
+      break;
+  }
+});
+
+// ============================================================
+// SECTIONS
+// ============================================================
+function showSection(sec) {
+  document.getElementById('section-cards').style.display = sec === 'cards' ? 'block' : 'none';
+  document.getElementById('section-review').style.display = sec === 'review' ? 'block' : 'none';
+  document.getElementById('section-add').style.display = sec === 'add' ? 'block' : 'none';
+
+  document.querySelectorAll('.nav-tab').forEach((t, i) => {
+    t.classList.toggle('active', ['cards','review','add'][i] === sec);
+  });
+
+  if (sec === 'review') {
+    renderReview();
+    updateVisualStats();
+  }
+  if (sec === 'add') renderCustomList();
+}
+
+// ============================================================
+// REVIEW
+// ============================================================
+function setReviewFilter(f) {
+  reviewFilter = f;
+  document.getElementById('rf-known').className = 'review-filter-btn' + (f === 'known' ? ' active-green' : '');
+  document.getElementById('rf-unknown').className = 'review-filter-btn' + (f === 'unknown' ? ' active-red' : '');
+  document.getElementById('rf-all').className = 'review-filter-btn' + (f === 'all' ? ' active-green' : '');
+  renderReview();
+}
+
+function renderReview() {
+  const all = [...VOCAB, ...customWords];
+  let cards;
+  if (reviewFilter === 'known') cards = all.filter(c => scores[c.id] === true);
+  else if (reviewFilter === 'unknown') cards = all.filter(c => scores[c.id] === false);
+  else cards = all.filter(c => scores[c.id] !== undefined);
+
+  const list = document.getElementById('review-list');
+  if (cards.length === 0) {
+    list.innerHTML = '<div class="empty-state"><div class="empty-icon">🌊</div><div class="empty-text">Aucun mot dans cette catégorie encore.<br>Commence à t\'entraîner !</div></div>';
+    return;
+  }
+
+  list.innerHTML = cards.map(c => `
+    <div class="review-item">
+      <div class="review-dot ${scores[c.id] ? 'known' : 'unknown'}"></div>
+      <div class="review-fr">${c.img || ''} ${c.fr}</div>
+      <div class="review-pt">${c.pt}</div>
+    </div>
+  `).join('');
+}
+
+function resetProgress() {
+  if (!confirm('Remettre tous les scores à zéro ?')) return;
+  scores = {};
+  saveScores();
+  updateProgress();
+  updateVisualStats();
+  renderReview();
+  renderCard(false);
+  showToast('🔄 Scores remis à zéro');
+}
+
+// ============================================================
+// CUSTOM WORDS
+// ============================================================
+function addCustomWord() {
+  const fr = document.getElementById('inp-fr').value.trim();
+  const pt = document.getElementById('inp-pt').value.trim();
+  const pron = document.getElementById('inp-pron').value.trim();
+  const example = document.getElementById('inp-example').value.trim();
+  const icon = document.getElementById('inp-icon').value.trim();
+
+  if (!fr || !pt) { showToast('⚠️ Remplis au moins le français et le portugais'); return; }
+
+  const word = {
+    id: 'custom_' + Date.now(),
+    cat: 'Cristina 💛',
+    fr, pt,
+    pron: pron || '',
+    example: example || '',
+    img: icon || '📝',
+  };
+
+  customWords.unshift(word);
+  saveCustom();
+  allCards = [...VOCAB, ...customWords];
+
+  buildCategories();
+
+  document.getElementById('inp-fr').value = '';
+  document.getElementById('inp-pt').value = '';
+  document.getElementById('inp-pron').value = '';
+  document.getElementById('inp-example').value = '';
+  document.getElementById('inp-icon').value = '';
+
+  renderCustomList();
+  updateProgress();
+  showToast('✓ Mot ajouté !');
+}
+
+function deleteCustom(id) {
+  customWords = customWords.filter(w => w.id !== id);
+  saveCustom();
+  allCards = [...VOCAB, ...customWords];
+  renderCustomList();
+  updateProgress();
+  buildCategories();
+  showToast('🗑️ Mot supprimé');
+}
+
+function renderCustomList() {
+  const list = document.getElementById('custom-list');
+  if (customWords.length === 0) {
+    list.innerHTML = '<div class="empty-state" style="padding:30px 0"><div class="empty-icon">💬</div><div class="empty-text">Aucun mot ajouté encore.<br>Cristina va te les apprendre !</div></div>';
+    return;
+  }
+  list.innerHTML = customWords.map(w => `
+    <div class="custom-word-item">
+      <div style="flex:3">
+        <div class="custom-word-fr">${w.img || ''} ${w.fr}</div>
+        <div class="custom-word-pt">${w.pt}</div>
+        ${w.pron ? `<div class="custom-word-pron">( ${w.pron} )</div>` : ''}
+        ${w.example ? `<div class="custom-word-pron">${w.example}</div>` : ''}
+      </div>
+      <button class="btn-delete" onclick="deleteCustom('${w.id}')">✕</button>
+    </div>
+  `).join('');
+}
+
+// ============================================================
+// TOAST
+// ============================================================
+// TOUCH GESTURES (pour mobile)
+// ============================================================
+let touchStartX = 0;
+let touchStartY = 0;
+let touchEndX = 0;
+let touchEndY = 0;
+
+// Minimum distance (en pixels) pour qu'un swipe soit détecté
+const SWIPE_THRESHOLD = 50;
+
+document.addEventListener('DOMContentLoaded', () => {
+  const cardContainer = document.querySelector('.card-container');
+  if (!cardContainer) return;
+  
+  cardContainer.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
+  }, false);
+  
+  cardContainer.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    touchEndY = e.changedTouches[0].screenY;
+    handleSwipe();
+  }, false);
+});
+
+function handleSwipe() {
+  const diffX = touchEndX - touchStartX;
+  const diffY = touchEndY - touchStartY;
+  
+  // Détecter si c'est plutôt un swipe horizontal ou vertical
+  if (Math.abs(diffX) > Math.abs(diffY)) {
+    // Swipe horizontal
+    if (Math.abs(diffX) > SWIPE_THRESHOLD) {
+      if (diffX > 0) {
+        // Swipe vers la droite → carte précédente
+        prevCard();
+      } else {
+        // Swipe vers la gauche → carte suivante
+        nextCard();
+      }
+    }
+  } else {
+    // Swipe vertical
+    if (Math.abs(diffY) > SWIPE_THRESHOLD) {
+      if (diffY > 0) {
+        // Swipe vers le bas → marquer "Je ne sais pas"
+        markCard(false);
+      } else {
+        // Swipe vers le haut → marquer "Je sais"
+        markCard(true);
+      }
+    }
+  }
+}
+
+// ============================================================
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+// ============================================================
+// INIT
+// ============================================================
+buildCategories();
+applyFilter();
+updateProgress();
+updateVisualStats();
+
+// Allow Enter key in form inputs
+document.querySelectorAll('.form-input').forEach(inp => {
+  inp.addEventListener('keydown', e => { if (e.key === 'Enter') addCustomWord(); });
+});
+</script>
+</body>
+</html>
